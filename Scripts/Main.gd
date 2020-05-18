@@ -3,6 +3,7 @@ extends Control
 onready var save_as_file_dialog = get_node('SaveAsFileDialog')
 onready var open_file_dialog = get_node('OpenFileDialog')
 onready var about_popup = get_node('AboutPopup')
+onready var text_editor = get_node('HSplitContainer/TextEdit')
 
 const UNTITLED = 'Untitled'
 var current_file = UNTITLED
@@ -57,27 +58,33 @@ func new_file():
 	current_file = UNTITLED
 	title_update()
 	# Resets the text back to nothing
-	$TextEdit.text = ''
+	text_editor.text = ''
 
 # Opens an existing file
 func open_file_selected(path):
+	var current_dir = $OpenFileDialog.current_dir
 	# Creates and reads the file
 	var file = File.new()
 	file.open(path, 1)
 	# Makes the TextEdit text the same as the file's
-	$TextEdit.text = file.get_as_text()
+	text_editor.text = file.get_as_text()
 	# Closes to prevent memory leaks
 	file.close()
 	# Changes the title to the file path
 	current_file = path
 	title_update()
+	# Creates recent files
+	var button = Button.new()
+	button.focus_mode = Control.FOCUS_NONE
+	$HSplitContainer/RecentFiles/Recents.add_child(button)
+	button.text = path
 
 # Saves the file as a file type
 func save_as_file_selected(path):
 	# Creates and writes the file
 	var file = File.new()
 	file.open(path, 2)
-	file.store_string($TextEdit.text)
+	file.store_string(text_editor.text)
 	# Closes to prevent memory leaks
 	file.close()
 	# Changes the title to the file path
@@ -94,7 +101,7 @@ func save_file():
 	else:
 		var file = File.new()
 		file.open(path, 2)
-		file.store_string($TextEdit.text)
+		file.store_string(text_editor.text)
 		# Closes to prevent memory leaks
 		file.close()
 		# Changes the title to the file path
