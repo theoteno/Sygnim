@@ -62,7 +62,6 @@ func new_file():
 
 # Opens an existing file
 func open_file_selected(path):
-	var current_dir = $OpenFileDialog.current_dir
 	# Creates and reads the file
 	var file = File.new()
 	file.open(path, 1)
@@ -73,11 +72,13 @@ func open_file_selected(path):
 	# Changes the title to the file path
 	current_file = path
 	title_update()
-	# Creates recent files
+	# Creates button for recent files
 	var button = Button.new()
 	button.focus_mode = Control.FOCUS_NONE
 	$HSplitContainer/RecentFiles/Recents.add_child(button)
-	button.text = path
+	button.text = path.get_file()
+	# Signal to go to the recent file
+	button.connect("pressed", self, "go_to_recent", [path])
 
 # Saves the file as a file type
 func save_as_file_selected(path):
@@ -106,3 +107,16 @@ func save_file():
 		file.close()
 		# Changes the title to the file path
 		current_file = path
+
+# Signal for going to the recent file
+func go_to_recent(path):
+	# Creates and reads the file
+	var file = File.new()
+	file.open(path, 1)
+	# Makes the TextEdit text the same as the file's
+	text_editor.text = file.get_as_text()
+	# Closes to prevent memory leaks
+	file.close()
+	# Changes the title to the file path
+	current_file = path
+	title_update()
