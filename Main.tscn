@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Fonts/Hack-Regular.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Fonts/Montserrat-Regular.tres" type="DynamicFont" id=2]
@@ -6,12 +6,14 @@
 [ext_resource path="res://Fonts/Montserrat-Regular.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Settings.gd" type="Script" id=6]
+[ext_resource path="res://Resources/LogoMini.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Logo.png" type="Texture" id=8]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 14
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 20
 font_data = ExtResource( 4 )
 
@@ -35,8 +37,8 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
-margin_top = 38.0
-margin_right = -9.99994
+margin_top = 42.0
+margin_right = -10.0
 margin_bottom = -10.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -44,7 +46,7 @@ __meta__ = {
 
 [node name="Sidebar" type="TabContainer" parent="HSplitContainer"]
 margin_right = 250.0
-margin_bottom = 552.0
+margin_bottom = 548.0
 rect_min_size = Vector2( 250, 0 )
 custom_fonts/font = ExtResource( 2 )
 __meta__ = {
@@ -52,7 +54,6 @@ __meta__ = {
 }
 
 [node name="Recents" type="VBoxContainer" parent="HSplitContainer/Sidebar"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -75,7 +76,7 @@ text = "Clear Recents"
 [node name="Recents" type="VBoxContainer" parent="HSplitContainer/Sidebar/Recents"]
 margin_top = 36.0
 margin_right = 242.0
-margin_bottom = 504.0
+margin_bottom = 500.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 15
@@ -84,6 +85,7 @@ __meta__ = {
 }
 
 [node name="Settings" type="VBoxContainer" parent="HSplitContainer/Sidebar"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -101,7 +103,7 @@ margin_top = 11.0
 margin_right = 162.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Draw Tabs"
 
 [node name="CheckButton" type="CheckButton" parent="HSplitContainer/Sidebar/Settings/DrawTabs"]
@@ -122,7 +124,7 @@ margin_top = 11.0
 margin_right = 162.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Draw Spaces"
 
 [node name="CheckButton" type="CheckButton" parent="HSplitContainer/Sidebar/Settings/DrawSpaces"]
@@ -142,7 +144,7 @@ margin_top = 11.0
 margin_right = 162.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Highlight Current Line"
 
 [node name="CheckButton" type="CheckButton" parent="HSplitContainer/Sidebar/Settings/HighlightCurrent"]
@@ -163,7 +165,7 @@ margin_top = 11.0
 margin_right = 162.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Caret Block Mode"
 
 [node name="CheckButton" type="CheckButton" parent="HSplitContainer/Sidebar/Settings/Caret"]
@@ -176,7 +178,7 @@ enabled_focus_mode = 0
 [node name="TextEdit" type="TextEdit" parent="HSplitContainer"]
 margin_left = 262.0
 margin_right = 1004.0
-margin_bottom = 552.0
+margin_bottom = 548.0
 rect_min_size = Vector2( 650, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -235,16 +237,24 @@ __meta__ = {
 [node name="Menu" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 margin_left = 10.0
-margin_top = 5.0
-margin_right = -10.0
+margin_top = 1.0
+margin_right = -7.0
+margin_bottom = 38.0
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Logo" type="TextureRect" parent="Menu"]
+margin_right = 32.0
+margin_bottom = 37.0
+texture = ExtResource( 7 )
+stretch_mode = 4
+
 [node name="FileMenu" type="MenuButton" parent="Menu"]
-margin_right = 47.0
-margin_bottom = 32.0
+margin_left = 36.0
+margin_right = 83.0
+margin_bottom = 37.0
 custom_fonts/font = ExtResource( 2 )
 text = "File"
 items = [ "Open File", null, 0, false, false, 0, 0, null, "", false, "Save As File", null, 0, false, false, 1, 0, null, "", false, "Save File", null, 0, false, false, 4, 0, null, "", false, "New File", null, 0, false, false, 3, 0, null, "", false, "Quit", null, 0, false, false, 2, 0, null, "", false ]
@@ -254,9 +264,9 @@ __meta__ = {
 }
 
 [node name="HelpMenu" type="MenuButton" parent="Menu"]
-margin_left = 51.0
-margin_right = 110.0
-margin_bottom = 32.0
+margin_left = 87.0
+margin_right = 146.0
+margin_bottom = 37.0
 custom_fonts/font = ExtResource( 2 )
 text = "Help"
 items = [ "About", null, 0, false, false, 0, 0, null, "", false, "Github", null, 0, false, false, 1, 0, null, "", false ]
@@ -274,7 +284,7 @@ margin_left = -261.5
 margin_top = -159.5
 margin_right = 261.5
 margin_bottom = 159.5
-custom_fonts/title_font = SubResource( 1 )
+custom_fonts/title_font = SubResource( 2 )
 popup_exclusive = true
 window_title = "About"
 __meta__ = {
@@ -282,6 +292,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="AboutPopup"]
+margin_top = 102.0
 margin_right = 523.0
 margin_bottom = 317.0
 custom_fonts/font = ExtResource( 2 )
@@ -294,6 +305,11 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Logo" type="Sprite" parent="AboutPopup"]
+position = Vector2( 261.379, 86.3293 )
+scale = Vector2( 0.104424, 0.110105 )
+texture = ExtResource( 8 )
 [connection signal="pressed" from="HSplitContainer/Sidebar/Recents/Button" to="." method="clear_recents"]
 [connection signal="toggled" from="HSplitContainer/Sidebar/Settings/DrawTabs/CheckButton" to="HSplitContainer/Sidebar/Settings" method="draw_tabs_toggled"]
 [connection signal="toggled" from="HSplitContainer/Sidebar/Settings/DrawSpaces/CheckButton" to="HSplitContainer/Sidebar/Settings" method="draw_spaces_toggled"]
