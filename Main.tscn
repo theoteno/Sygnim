@@ -38,14 +38,15 @@ __meta__ = {
 }
 
 [node name="Sidebar" type="TabContainer" parent="HSplitContainer"]
-margin_right = 183.0
+margin_right = 235.0
 margin_bottom = 552.0
+rect_min_size = Vector2( 235, 0 )
 custom_fonts/font = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Recent" type="Container" parent="HSplitContainer/Sidebar"]
+[node name="Recents" type="VBoxContainer" parent="HSplitContainer/Sidebar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -56,21 +57,27 @@ rect_min_size = Vector2( 175, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Recents" type="VBoxContainer" parent="HSplitContainer/Sidebar/Recent"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Button" type="Button" parent="HSplitContainer/Sidebar/Recents"]
+margin_right = 227.0
+margin_bottom = 32.0
+focus_mode = 0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+enabled_focus_mode = 0
+text = "Clear Recents"
+
+[node name="Recents" type="VBoxContainer" parent="HSplitContainer/Sidebar/Recents"]
+margin_top = 36.0
+margin_right = 227.0
+margin_bottom = 504.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="HSplitContainer/Sidebar/Recent/Recents"]
-margin_right = 175.0
-margin_bottom = 26.0
-custom_fonts/font = ExtResource( 2 )
-text = "test"
-
 [node name="TextEdit" type="TextEdit" parent="HSplitContainer"]
-margin_left = 195.0
+margin_left = 247.0
 margin_right = 1004.0
 margin_bottom = 552.0
 rect_min_size = Vector2( 700, 0 )
@@ -191,5 +198,6 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="pressed" from="HSplitContainer/Sidebar/Recents/Button" to="." method="clear_recents"]
 [connection signal="file_selected" from="OpenFileDialog" to="." method="open_file_selected"]
 [connection signal="file_selected" from="SaveAsFileDialog" to="." method="save_as_file_selected"]
