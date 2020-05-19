@@ -27,16 +27,18 @@ __meta__ = {
 }
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 38.0
-margin_right = 1014.0
-margin_bottom = 590.0
+margin_right = -9.99994
+margin_bottom = -10.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RecentFiles" type="ColorRect" parent="HSplitContainer"]
-margin_right = 292.0
+margin_right = 293.0
 margin_bottom = 552.0
 rect_min_size = Vector2( 175, 0 )
 size_flags_horizontal = 3
@@ -65,8 +67,8 @@ __meta__ = {
 }
 
 [node name="TextEdit" type="TextEdit" parent="HSplitContainer"]
-margin_left = 304.0
-margin_right = 1004.0
+margin_left = 305.0
+margin_right = 1005.0
 margin_bottom = 552.0
 rect_min_size = Vector2( 700, 0 )
 size_flags_horizontal = 3
