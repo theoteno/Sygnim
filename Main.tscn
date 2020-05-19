@@ -37,38 +37,41 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RecentFiles" type="ColorRect" parent="HSplitContainer"]
-margin_right = 293.0
+[node name="Sidebar" type="TabContainer" parent="HSplitContainer"]
+margin_right = 183.0
 margin_bottom = 552.0
+custom_fonts/font = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Recent" type="Container" parent="HSplitContainer/Sidebar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 44.0
+margin_right = -4.0
+margin_bottom = -4.0
 rect_min_size = Vector2( 175, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color( 0.172549, 0.164706, 0.196078, 1 )
 
-[node name="Label" type="Label" parent="HSplitContainer/RecentFiles"]
-anchor_right = 1.0
-margin_bottom = 26.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = ExtResource( 2 )
-text = "Recent Files"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Recents" type="VBoxContainer" parent="HSplitContainer/RecentFiles"]
+[node name="Recents" type="VBoxContainer" parent="HSplitContainer/Sidebar/Recent"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 30.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="HSplitContainer/Sidebar/Recent/Recents"]
+margin_right = 175.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 2 )
+text = "test"
+
 [node name="TextEdit" type="TextEdit" parent="HSplitContainer"]
-margin_left = 305.0
-margin_right = 1005.0
+margin_left = 195.0
+margin_right = 1004.0
 margin_bottom = 552.0
 rect_min_size = Vector2( 700, 0 )
 size_flags_horizontal = 3
