@@ -7,6 +7,7 @@ onready var text_editor = get_node('HSplitContainer/TextEdit')
 
 const UNTITLED = 'Untitled'
 var current_file = UNTITLED
+var max_recents = 10
 
 func _ready():
 	title_update()
@@ -72,13 +73,15 @@ func open_file_selected(path):
 	# Changes the title to the file path
 	current_file = path
 	title_update()
-	# Creates button for recent files
-	var button = Button.new()
-	button.focus_mode = Control.FOCUS_NONE
-	$HSplitContainer/Sidebar/Recents/Recents.add_child(button)
-	button.text = path.get_file()
-	# Signal to go to the recent file
-	button.connect("pressed", self, "go_to_recent", [path])
+	# Checks if the recents list exceeds 10, if not, continues.
+	if $HSplitContainer/Sidebar/Recents/Recents.get_child_count() < max_recents:
+		# Creates button for recent files
+		var button = Button.new()
+		button.focus_mode = Control.FOCUS_NONE
+		$HSplitContainer/Sidebar/Recents/Recents.add_child(button)
+		button.text = path.get_file()
+		# Signal to go to the recent file
+		button.connect("pressed", self, "go_to_recent", [path])
 
 # Saves the file as a file type
 func save_as_file_selected(path):
