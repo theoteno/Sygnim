@@ -75,7 +75,7 @@ func open_file_selected(path):
 	# Creates button for recent files
 	var button = Button.new()
 	button.focus_mode = Control.FOCUS_NONE
-	$HSplitContainer/RecentFiles/Recents.add_child(button)
+	$HSplitContainer/Sidebar/Recent/Recents.add_child(button)
 	button.text = path.get_file()
 	# Signal to go to the recent file
 	button.connect("pressed", self, "go_to_recent", [path])
