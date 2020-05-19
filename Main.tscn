@@ -1,10 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Fonts/Hack-Regular.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Fonts/Montserrat-Regular.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=3]
 [ext_resource path="res://Fonts/Montserrat-Regular.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Settings.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=2]
+size = 14
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -38,15 +43,16 @@ __meta__ = {
 }
 
 [node name="Sidebar" type="TabContainer" parent="HSplitContainer"]
-margin_right = 235.0
+margin_right = 250.0
 margin_bottom = 552.0
-rect_min_size = Vector2( 235, 0 )
+rect_min_size = Vector2( 250, 0 )
 custom_fonts/font = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Recents" type="VBoxContainer" parent="HSplitContainer/Sidebar"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -58,7 +64,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="HSplitContainer/Sidebar/Recents"]
-margin_right = 227.0
+margin_right = 242.0
 margin_bottom = 32.0
 focus_mode = 0
 size_flags_horizontal = 3
@@ -68,19 +74,110 @@ text = "Clear Recents"
 
 [node name="Recents" type="VBoxContainer" parent="HSplitContainer/Sidebar/Recents"]
 margin_top = 36.0
-margin_right = 227.0
+margin_right = 242.0
 margin_bottom = 504.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 15
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Settings" type="VBoxContainer" parent="HSplitContainer/Sidebar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 44.0
+margin_right = -4.0
+margin_bottom = -4.0
+script = ExtResource( 6 )
+
+[node name="DrawTabs" type="HBoxContainer" parent="HSplitContainer/Sidebar/Settings"]
+margin_right = 242.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="HSplitContainer/Sidebar/Settings/DrawTabs"]
+margin_top = 11.0
+margin_right = 162.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Draw Tabs"
+
+[node name="CheckButton" type="CheckButton" parent="HSplitContainer/Sidebar/Settings/DrawTabs"]
+margin_left = 166.0
+margin_right = 242.0
+margin_bottom = 40.0
+focus_mode = 0
+pressed = true
+enabled_focus_mode = 0
+
+[node name="DrawSpaces" type="HBoxContainer" parent="HSplitContainer/Sidebar/Settings"]
+margin_top = 44.0
+margin_right = 242.0
+margin_bottom = 84.0
+
+[node name="Label" type="Label" parent="HSplitContainer/Sidebar/Settings/DrawSpaces"]
+margin_top = 11.0
+margin_right = 162.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Draw Spaces"
+
+[node name="CheckButton" type="CheckButton" parent="HSplitContainer/Sidebar/Settings/DrawSpaces"]
+margin_left = 166.0
+margin_right = 242.0
+margin_bottom = 40.0
+focus_mode = 0
+enabled_focus_mode = 0
+
+[node name="HighlightCurrent" type="HBoxContainer" parent="HSplitContainer/Sidebar/Settings"]
+margin_top = 88.0
+margin_right = 242.0
+margin_bottom = 128.0
+
+[node name="Label" type="Label" parent="HSplitContainer/Sidebar/Settings/HighlightCurrent"]
+margin_top = 11.0
+margin_right = 162.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Highlight Current Line"
+
+[node name="CheckButton" type="CheckButton" parent="HSplitContainer/Sidebar/Settings/HighlightCurrent"]
+margin_left = 166.0
+margin_right = 242.0
+margin_bottom = 40.0
+focus_mode = 0
+pressed = true
+enabled_focus_mode = 0
+
+[node name="Caret" type="HBoxContainer" parent="HSplitContainer/Sidebar/Settings"]
+margin_top = 132.0
+margin_right = 242.0
+margin_bottom = 172.0
+
+[node name="Label" type="Label" parent="HSplitContainer/Sidebar/Settings/Caret"]
+margin_top = 11.0
+margin_right = 162.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Caret Block Mode"
+
+[node name="CheckButton" type="CheckButton" parent="HSplitContainer/Sidebar/Settings/Caret"]
+margin_left = 166.0
+margin_right = 242.0
+margin_bottom = 40.0
+focus_mode = 0
+enabled_focus_mode = 0
+
 [node name="TextEdit" type="TextEdit" parent="HSplitContainer"]
-margin_left = 247.0
+margin_left = 262.0
 margin_right = 1004.0
 margin_bottom = 552.0
-rect_min_size = Vector2( 700, 0 )
+rect_min_size = Vector2( 650, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
@@ -92,7 +189,6 @@ fold_gutter = true
 highlight_all_occurrences = true
 smooth_scrolling = true
 minimap_draw = true
-caret_block_mode = true
 caret_blink = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -199,5 +295,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="HSplitContainer/Sidebar/Recents/Button" to="." method="clear_recents"]
+[connection signal="toggled" from="HSplitContainer/Sidebar/Settings/DrawTabs/CheckButton" to="HSplitContainer/Sidebar/Settings" method="draw_tabs_toggled"]
+[connection signal="toggled" from="HSplitContainer/Sidebar/Settings/DrawSpaces/CheckButton" to="HSplitContainer/Sidebar/Settings" method="draw_spaces_toggled"]
+[connection signal="toggled" from="HSplitContainer/Sidebar/Settings/HighlightCurrent/CheckButton" to="HSplitContainer/Sidebar/Settings" method="highlight_current_line_toggled"]
+[connection signal="toggled" from="HSplitContainer/Sidebar/Settings/Caret/CheckButton" to="HSplitContainer/Sidebar/Settings" method="caret_toggled"]
 [connection signal="file_selected" from="OpenFileDialog" to="." method="open_file_selected"]
 [connection signal="file_selected" from="SaveAsFileDialog" to="." method="save_as_file_selected"]
