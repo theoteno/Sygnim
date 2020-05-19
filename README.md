@@ -1,4 +1,5 @@
 <p align="center">
+    <img src="https://raw.githubusercontent.com/MintStudios/Signum/master/Resources/Logo.png" height="100" width="100"/>
     <h1 align = "center">Signum - the free and open-source text editor!</h1>
 </p>
 <p align="center">
