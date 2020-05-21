@@ -26,6 +26,7 @@ func title_update():
 # Help Menu IDs:
 # About = 0
 # Github Page = 1
+# Github Issues = 2
 
 func file_item_pressed(id):
 	match id:
@@ -53,6 +54,9 @@ func help_item_pressed(id):
 		1:
 			# Opens the github page in the browser
 			OS.shell_open('https://github.com/MintStudios/Signum')
+		2:
+			# Opens issues in github
+			OS.shell_open('https://github.com/MintStudios/Signum/issues')
 
 # Creates a new file
 func new_file():

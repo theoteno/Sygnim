@@ -269,7 +269,7 @@ margin_right = 146.0
 margin_bottom = 37.0
 custom_fonts/font = ExtResource( 2 )
 text = "Help"
-items = [ "About", null, 0, false, false, 0, 0, null, "", false, "Github", null, 0, false, false, 1, 0, null, "", false ]
+items = [ "About", null, 0, false, false, 0, 0, null, "", false, "Github", null, 0, false, false, 1, 0, null, "", false, "Report a Bug", null, 0, false, false, 2, 0, null, "", false ]
 switch_on_hover = true
 __meta__ = {
 "_edit_use_anchors_": false
