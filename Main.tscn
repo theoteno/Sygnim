@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Fonts/Hack-Regular.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Fonts/Montserrat-Regular.tres" type="DynamicFont" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Resources/LogoMini.png" type="Texture" id=7]
 [ext_resource path="res://Resources/Logo.png" type="Texture" id=8]
 [ext_resource path="res://Scripts/ThemeSelect.gd" type="Script" id=9]
+[ext_resource path="res://Themes/godot_theme.tres" type="Theme" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 14
@@ -25,6 +26,7 @@ font_data = ExtResource( 4 )
 [node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 10 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
@@ -33,6 +35,7 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 10 )
 color = Color( 0.0980392, 0.101961, 0.184314, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -45,6 +48,7 @@ margin_left = 10.0
 margin_top = 42.0
 margin_right = -10.0
 margin_bottom = -10.0
+theme = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -53,6 +57,7 @@ __meta__ = {
 margin_right = 250.0
 margin_bottom = 548.0
 rect_min_size = Vector2( 250, 0 )
+theme = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -61,29 +66,32 @@ __meta__ = {
 [node name="Recents" type="VBoxContainer" parent="HSplitContainer/Sidebar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 44.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 5.0
+margin_top = 41.0
+margin_right = -5.0
+margin_bottom = -5.0
 rect_min_size = Vector2( 175, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 10 )
 
 [node name="Button" type="Button" parent="HSplitContainer/Sidebar/Recents"]
-margin_right = 242.0
-margin_bottom = 32.0
+margin_right = 240.0
+margin_bottom = 34.0
 focus_mode = 0
 size_flags_horizontal = 3
+theme = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
 enabled_focus_mode = 0
 text = "Clear Recents"
 
 [node name="Recents" type="VBoxContainer" parent="HSplitContainer/Sidebar/Recents"]
-margin_top = 36.0
-margin_right = 242.0
-margin_bottom = 500.0
+margin_top = 38.0
+margin_right = 240.0
+margin_bottom = 502.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 10 )
 custom_constants/separation = 15
 __meta__ = {
 "_edit_use_anchors_": false
@@ -97,11 +105,13 @@ margin_left = 4.0
 margin_top = 44.0
 margin_right = -4.0
 margin_bottom = -4.0
+theme = ExtResource( 10 )
 script = ExtResource( 6 )
 
 [node name="DrawTabs" type="HBoxContainer" parent="HSplitContainer/Sidebar/Settings"]
 margin_right = 242.0
 margin_bottom = 40.0
+theme = ExtResource( 10 )
 
 [node name="Label" type="Label" parent="HSplitContainer/Sidebar/Settings/DrawTabs"]
 margin_top = 11.0
@@ -123,6 +133,7 @@ enabled_focus_mode = 0
 margin_top = 44.0
 margin_right = 242.0
 margin_bottom = 84.0
+theme = ExtResource( 10 )
 
 [node name="Label" type="Label" parent="HSplitContainer/Sidebar/Settings/DrawSpaces"]
 margin_top = 11.0
@@ -143,6 +154,7 @@ enabled_focus_mode = 0
 margin_top = 88.0
 margin_right = 242.0
 margin_bottom = 128.0
+theme = ExtResource( 10 )
 
 [node name="Label" type="Label" parent="HSplitContainer/Sidebar/Settings/HighlightCurrent"]
 margin_top = 11.0
@@ -164,6 +176,7 @@ enabled_focus_mode = 0
 margin_top = 132.0
 margin_right = 242.0
 margin_bottom = 172.0
+theme = ExtResource( 10 )
 
 [node name="Label" type="Label" parent="HSplitContainer/Sidebar/Settings/Caret"]
 margin_top = 11.0
@@ -185,18 +198,20 @@ margin_top = 176.0
 margin_right = 242.0
 margin_bottom = 200.0
 focus_mode = 0
+theme = ExtResource( 10 )
 custom_fonts/font = SubResource( 2 )
 enabled_focus_mode = 0
 text = "Default"
 script = ExtResource( 9 )
 
 [node name="TextEdit" type="TextEdit" parent="HSplitContainer"]
-margin_left = 262.0
+margin_left = 258.0
 margin_right = 1004.0
 margin_bottom = 548.0
 rect_min_size = Vector2( 650, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 10 )
 custom_fonts/font = ExtResource( 1 )
 highlight_current_line = true
 syntax_highlighting = true
@@ -220,6 +235,7 @@ margin_left = -289.0
 margin_top = -185.5
 margin_right = 289.0
 margin_bottom = 185.5
+theme = ExtResource( 10 )
 popup_exclusive = true
 window_title = "Open a File"
 resizable = true
@@ -240,6 +256,7 @@ margin_left = -311.099
 margin_top = -203.584
 margin_right = 305.901
 margin_bottom = 204.416
+theme = ExtResource( 10 )
 popup_exclusive = true
 resizable = true
 access = 2
@@ -255,6 +272,7 @@ margin_left = 10.0
 margin_top = 1.0
 margin_right = -7.0
 margin_bottom = 38.0
+theme = ExtResource( 10 )
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -263,6 +281,7 @@ __meta__ = {
 [node name="Logo" type="TextureRect" parent="Menu"]
 margin_right = 32.0
 margin_bottom = 37.0
+theme = ExtResource( 10 )
 texture = ExtResource( 7 )
 stretch_mode = 4
 
@@ -270,6 +289,7 @@ stretch_mode = 4
 margin_left = 36.0
 margin_right = 83.0
 margin_bottom = 37.0
+theme = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
 text = "File"
 items = [ "Open File", null, 0, false, false, 0, 0, null, "", false, "Save As File", null, 0, false, false, 1, 0, null, "", false, "Save File", null, 0, false, false, 4, 0, null, "", false, "New File", null, 0, false, false, 3, 0, null, "", false, "Quit", null, 0, false, false, 2, 0, null, "", false ]
@@ -282,6 +302,7 @@ __meta__ = {
 margin_left = 87.0
 margin_right = 146.0
 margin_bottom = 37.0
+theme = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
 text = "Help"
 items = [ "About", null, 0, false, false, 0, 0, null, "", false, "Github", null, 0, false, false, 1, 0, null, "", false, "Report a Bug", null, 0, false, false, 2, 0, null, "", false ]
@@ -299,6 +320,7 @@ margin_left = -261.5
 margin_top = -159.5
 margin_right = 261.5
 margin_bottom = 159.5
+theme = ExtResource( 10 )
 custom_fonts/title_font = SubResource( 3 )
 popup_exclusive = true
 window_title = "About"
@@ -310,6 +332,7 @@ __meta__ = {
 margin_top = 102.0
 margin_right = 523.0
 margin_bottom = 317.0
+theme = ExtResource( 10 )
 custom_fonts/font = ExtResource( 2 )
 text = "Signum
 -
