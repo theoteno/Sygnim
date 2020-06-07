@@ -20,7 +20,7 @@ jobs:
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
-          godot -v --export "Windows Desktop" ../build/windows/Signum.exe
+          godot -v --export "Windows Desktop" /build/windows/Signum.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
@@ -42,7 +42,7 @@ jobs:
       - name: Linux Build
         run: |
           mkdir -v -p build/linux
-          godot -v --export "Linux/X11" ../build/linux/Signum.x86_64
+          godot -v --export "Linux/X11" /build/linux/Signum.x86_64
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
@@ -64,7 +64,7 @@ jobs:
       - name: Mac Build
         run: |
           mkdir -v -p build/mac
-          godot -v --export "Mac OSX" ../build/mac/Signum.zip
+          godot -v --export "Mac OSX" /build/mac/Signum.zip
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
