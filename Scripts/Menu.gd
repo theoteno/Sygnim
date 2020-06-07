@@ -19,8 +19,8 @@ func _ready():
 	file_menu.get_popup().set_item_shortcut(0, set_shortcut(KEY_O), true)
 	file_menu.get_popup().set_item_shortcut(1, set_shortcut(KEY_E), true)
 	file_menu.get_popup().set_item_shortcut(4, set_shortcut(KEY_Q), true)
-	file_menu.get_popup().set_item_shortcut(2, set_shortcut(KEY_N), true)
-	file_menu.get_popup().set_item_shortcut(3, set_shortcut(KEY_S), true)
+	file_menu.get_popup().set_item_shortcut(2, set_shortcut(KEY_S), true)
+	file_menu.get_popup().set_item_shortcut(3, set_shortcut(KEY_N), true)
 	
 	# Connects the signals of the items to the main script
 	file_menu.get_popup().connect('id_pressed', get_parent(), 'file_item_pressed')
