@@ -5,6 +5,9 @@
 <p align="center">
     Made by Mint Studios with the Godot Engine, written in GDScript!
 </p>
+<p align="center">
+    ![godot-ci export](https://github.com/MintStudios/Signum/workflows/godot-ci%20export/badge.svg)
+</p>
  <p align="center">  
     <img src="https://i.postimg.cc/26dBL8Rn/Annotation-2020-05-17-143228.png" alt="Signum" />
 </p>
