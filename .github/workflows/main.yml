@@ -1,2 +1,2 @@
-- name: godot-ci
+  name: godot-ci
   uses: aBARICHELLO/godot-ci@gh-actions
