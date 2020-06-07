@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Fonts/Hack-Regular.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Fonts/Montserrat-Regular.tres" type="DynamicFont" id=2]
@@ -12,6 +12,10 @@
 [ext_resource path="res://Themes/godot_theme.tres" type="Theme" id=10]
 
 [sub_resource type="DynamicFont" id=1]
+size = 14
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
 size = 14
 font_data = ExtResource( 4 )
 
@@ -182,11 +186,22 @@ margin_bottom = 40.0
 focus_mode = 0
 enabled_focus_mode = 0
 
-[node name="ThemeButton" type="OptionButton" parent="HSplitContainer/Sidebar/Settings"]
+[node name="Theme" type="HBoxContainer" parent="HSplitContainer/Sidebar/Settings"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="HSplitContainer/Sidebar/Settings/Theme"]
+margin_right = 8.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 4 )
+text = "Theme"
+
+[node name="ThemeButton" type="OptionButton" parent="HSplitContainer/Sidebar/Settings/Theme"]
 margin_top = 176.0
 margin_right = 242.0
-margin_bottom = 200.0
+margin_bottom = 202.0
 focus_mode = 0
+size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
 enabled_focus_mode = 0
 text = "Default"
@@ -332,6 +347,6 @@ texture = ExtResource( 8 )
 [connection signal="toggled" from="HSplitContainer/Sidebar/Settings/DrawSpaces/CheckButton" to="HSplitContainer/Sidebar/Settings" method="draw_spaces_toggled"]
 [connection signal="toggled" from="HSplitContainer/Sidebar/Settings/HighlightCurrent/CheckButton" to="HSplitContainer/Sidebar/Settings" method="highlight_current_line_toggled"]
 [connection signal="toggled" from="HSplitContainer/Sidebar/Settings/Caret/CheckButton" to="HSplitContainer/Sidebar/Settings" method="caret_toggled"]
-[connection signal="item_selected" from="HSplitContainer/Sidebar/Settings/ThemeButton" to="HSplitContainer/Sidebar/Settings/ThemeButton" method="theme_select"]
+[connection signal="item_selected" from="HSplitContainer/Sidebar/Settings/Theme/ThemeButton" to="HSplitContainer/Sidebar/Settings/Theme/ThemeButton" method="theme_select"]
 [connection signal="file_selected" from="OpenFileDialog" to="." method="open_file_selected"]
 [connection signal="file_selected" from="SaveAsFileDialog" to="." method="save_as_file_selected"]
