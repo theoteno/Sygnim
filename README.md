@@ -18,7 +18,7 @@ Signum is a free and open source text editor, that is made with the Godot Engine
  - [GitHub Releases (Windows, Linux & Mac)](https://github.com/MintStudios/Signum/releases)
  
  _More download links pending_
- 
+  
  ## Contributing
  Please feel free to contribute! I am always looking for ways to improve the editor. Signum uses Godot version _**3.2.1**_
  
