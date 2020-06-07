@@ -9,7 +9,7 @@
     <img src="https://github.com/MintStudios/Signum/workflows/godot-ci%20export/badge.svg" alt="Signum" />
 </p>
  <p align="center">  
-    <img src="https://i.postimg.cc/26dBL8Rn/Annotation-2020-05-17-143228.png" alt="Signum" />
+    <img src="https://i.postimg.cc/HL5kSNqh/Annotation-2020-06-07-181537.png" alt="Signum" />
 </p>
 
 Signum is a free and open source text editor, that is made with the Godot Engine! It uses the permissive MIT license, so anyone can contribute!
