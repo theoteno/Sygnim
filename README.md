@@ -58,13 +58,14 @@ Signum is a free and open source text editor, that is made with the Godot Engine
  ## Documentation
  Documentation is pending.
  
- ## v0.1 Features
-  - Opening files
-  - Saving files
-  - Save as files
-  - Minimap
-  - Quitting
-  - New files
-  - Shortcuts
+ ## v0.2 Features
+- 2 brand new themes: Godot and Solarized
+- Settings tab
+- Option for drawing tabs
+- Option for drawing spaces
+- Option for using a caret or a block
+- Option for highlighting current line
+- Option to view up to 5 recent files
+- Option to clear your recents
  
  **If this all seems to less for you, make sure to contribute!**
