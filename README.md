@@ -14,7 +14,8 @@
 <p align="center">
     <img src="https://img.shields.io/github/repo-size/MintStudios/signum"/>
     <img src="https://img.shields.io/github/downloads/MintStudios/Signum/total?color=lightgreen"/>
-    <img src="https://img.shields.io/github/issues/MintStudios/Signumhttps://img.shields.io/github/license/MintStudios/Signum?color=Red)"/>
+    <img src="https://img.shields.io/github/license/MintStudios/Signum?color=Red"/>
+    <img src="https://img.shields.io/github/issues/MintStudios/Signum"/>
 </p>
 <p align="center">
     <img src="https://img.shields.io/github/v/release/mintstudios/signum?include_prereleases"/>
