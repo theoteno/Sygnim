@@ -5,12 +5,28 @@
 <p align="center">
     Made by Mint Studios with the Godot Engine, written in GDScript!
 </p>
-<p align="center">
-    <img src="https://github.com/MintStudios/Signum/workflows/godot-ci%20export/badge.svg" alt="Signum" />
-</p>
  <p align="center">  
     <img src="https://i.postimg.cc/HL5kSNqh/Annotation-2020-06-07-181537.png" alt="Signum" />
 </p>
+<p align="center">
+    <img src="https://github.com/MintStudios/Signum/workflows/godot-ci%20export/badge.svg" alt="Signum" />
+</p>
+<p align="center">
+    <img src="https://img.shields.io/github/repo-size/MintStudios/signum"/>
+    <img src="https://img.shields.io/github/downloads/MintStudios/Signum/total?color=lightgreen"/>
+    <img src="https://img.shields.io/github/issues/MintStudios/Signumhttps://img.shields.io/github/license/MintStudios/Signum?color=Red)"/>
+</p>
+<p align="center">
+    <img src="https://img.shields.io/github/v/release/mintstudios/signum?include_prereleases"/>
+    <img src="https://img.shields.io/github/commits-since/mintstudios/signum/latest?include_prereleases"/>
+</p>
+<p align="center">
+    <img src="https://img.shields.io/github/forks/MintStudios/Signum?style=social"/>
+    <img src="https://img.shields.io/github/stars/MintStudios/Signum?style=social"/>
+    <img src="https://img.shields.io/github/watchers/mintstudios/Signum?style=social"/>
+</p>
+
+
 
 Signum is a free and open source text editor, that is made with the Godot Engine! It uses the permissive MIT license, so anyone can contribute!
 
