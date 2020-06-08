@@ -37,7 +37,7 @@ Signum is a free and open source text editor, that is made with the Godot Engine
  
  _More download links pending_
  
- _Nightly builds are built whenever there is a commit. To download these builds, clink on the nightly builds link_ 
+ _Nightly builds are built everyday at **00:00 UTC**. To download these builds, clink on the nightly builds link_ 
  
  ![Annotation-2020-06-07-174747-200x100.png](https://i.postimg.cc/CK6ztD5R/Annotation-2020-06-07-174747-200x100.png)
  
