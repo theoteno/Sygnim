@@ -15,15 +15,15 @@
 size = 14
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=4]
-size = 14
-font_data = ExtResource( 4 )
-
 [sub_resource type="DynamicFont" id=2]
 size = 14
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=3]
+size = 14
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
 size = 20
 font_data = ExtResource( 4 )
 
@@ -99,10 +99,10 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 44.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 5.0
+margin_top = 41.0
+margin_right = -5.0
+margin_bottom = -5.0
 script = ExtResource( 6 )
 
 [node name="DrawTabs" type="HBoxContainer" parent="HSplitContainer/Sidebar/Settings"]
@@ -193,7 +193,7 @@ margin_bottom = 40.0
 [node name="Label" type="Label" parent="HSplitContainer/Sidebar/Settings/Theme"]
 margin_right = 8.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 text = "Theme"
 
 [node name="ThemeButton" type="OptionButton" parent="HSplitContainer/Sidebar/Settings/Theme"]
@@ -202,7 +202,7 @@ margin_right = 242.0
 margin_bottom = 202.0
 focus_mode = 0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 enabled_focus_mode = 0
 text = "Default"
 script = ExtResource( 9 )
@@ -316,7 +316,7 @@ margin_left = -261.5
 margin_top = -159.5
 margin_right = 261.5
 margin_bottom = 159.5
-custom_fonts/title_font = SubResource( 3 )
+custom_fonts/title_font = SubResource( 4 )
 popup_exclusive = true
 window_title = "About"
 __meta__ = {
