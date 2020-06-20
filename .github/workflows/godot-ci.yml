@@ -1,5 +1,11 @@
 name: "godot-ci export"
-on: push
+on:
+  release:
+    types: [released, prereleased]
+  schedule:
+    - cron: '0 0 * * *'
+  pull_request: 
+    
 
 env:
   GODOT_VERSION: 3.2.1
