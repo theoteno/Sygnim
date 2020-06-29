@@ -56,7 +56,7 @@ Signum is a free and open source text editor, that is made with the Godot Engine
  3. Make your own additions! **_MAKE SURE THAT YOU USE THE GLES2 RENDERER_**
  
  ## Documentation
- Documentation is pending.
+ Documentation is currently being built in the `gh-pages` branch, and is using a jekyll theme for the moment. It is being hosted at http://minstudios.me/Signum.
  
  ## v0.2 Features
 - 2 brand new themes: Godot and Solarized
