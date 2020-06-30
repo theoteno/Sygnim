@@ -18,3 +18,7 @@ func highlight_current_line_toggled(button_pressed):
 # Toggles if the caret is block mode (Think of the bash caret)
 func caret_toggled(button_pressed):
 	text_editor.caret_block_mode = button_pressed
+
+# Toggles line numbers
+func show_line_numbers_toggled(button_pressed):
+	text_editor.show_line_numbers = button_pressed
