@@ -4,6 +4,7 @@ onready var save_as_file_dialog = get_node('SaveAsFileDialog')
 onready var open_file_dialog = get_node('OpenFileDialog')
 onready var about_popup = get_node('AboutPopup')
 onready var text_editor = get_node('HSplitContainer/TextEdit')
+onready var menu = get_node('Menu')
 
 const UNTITLED = 'Untitled'
 var current_file = UNTITLED
@@ -11,52 +12,12 @@ var max_recents = 10
 
 func _ready():
 	title_update()
+	menu.set_callback_target(self)
+	menu.initialize()
 
 func title_update():
 	# This sets the title for the current title
 	OS.set_window_title('Signum - ' + current_file)
-
-# File Menu IDs:
-# Open File = 0
-# Save As File = 1
-# Save File = 4
-# Quit = 2
-# New File = 3
-# ----------------
-# Help Menu IDs:
-# About = 0
-# Github Page = 1
-# Github Issues = 2
-
-func file_item_pressed(id):
-	match id:
-		0:
-			# Opens file select dialog
-			open_file_dialog.popup()
-		1:
-			# Opens save file dialog
-			save_as_file_dialog.popup()
-		2:
-			# Closes the program
-			get_tree().quit()
-		3:
-			# Creates file
-			new_file()
-		4:
-			# Saves file without changing the name
-			save_file()
-
-func help_item_pressed(id):
-	match id:
-		0:
-			# Opens about popup
-			about_popup.popup()
-		1:
-			# Opens the github page in the browser
-			OS.shell_open('https://github.com/MintStudios/Signum')
-		2:
-			# Opens issues in github
-			OS.shell_open('https://github.com/MintStudios/Signum/issues')
 
 # Creates a new file
 func new_file():
@@ -64,6 +25,30 @@ func new_file():
 	title_update()
 	# Resets the text back to nothing
 	text_editor.text = ''
+
+# Open File menu item callback
+func open_file_pressed():
+	open_file_dialog.popup()
+
+# Save As File menu item callback
+func save_as_file_pressed():
+	save_as_file_dialog.popup()
+
+# Quit menu item callback
+func quit_pressed():
+	get_tree().quit()
+
+# About menu item callback
+func about_pressed():
+	about_popup.popup()
+
+# GitHub menu item callback
+func github_pressed():
+	OS.shell_open("https://github.com/MintStudios/Signum")
+
+# Report a Bug menu item callback
+func report_bug_pressed():
+	OS.shell_open("https://github.com/MintStudios/Signum/issues")
 
 # Opens an existing file
 func open_file_selected(path):
