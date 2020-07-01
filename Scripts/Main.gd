@@ -1,9 +1,12 @@
 extends Control
 
+var tab_scene = preload("res://Scenes/Tab.tscn")
+
 onready var save_as_file_dialog = get_node('SaveAsFileDialog')
 onready var open_file_dialog = get_node('OpenFileDialog')
 onready var about_popup = get_node('AboutPopup')
-onready var text_editor = get_node('HSplitContainer/TextEdit')
+onready var tab_container = get_node("HSplitContainer/TabContainer")
+onready var current_tab = get_node("HSplitContainer/TabContainer/Tabs")
 
 const UNTITLED = 'Untitled'
 var current_file = UNTITLED
@@ -12,9 +15,18 @@ var max_recents = 10
 func _ready():
 	title_update()
 
+#Get file name from File path
+func get_file_name(file : String):
+	var strings = file.split("/")
+	return strings[strings.size() - 1]
+
+
+#Update title and tab title
 func title_update():
 	# This sets the title for the current title
 	OS.set_window_title('Signum - ' + current_file)
+	current_tab.name = get_file_name(current_file)
+
 
 # File Menu IDs:
 # Open File = 0
@@ -63,15 +75,22 @@ func new_file():
 	current_file = UNTITLED
 	title_update()
 	# Resets the text back to nothing
-	text_editor.text = ''
+	current_tab.get_node("TextEdit").text = ''
 
 # Opens an existing file
 func open_file_selected(path):
+	#Do not open file if its already opened in editor.
+	#instead switch to that tab
+	if is_file_open(path):
+		switch_to_tab(path)
+		return
+	
 	# Creates and reads the file
 	var file = File.new()
 	file.open(path, 1)
+	create_new_tab(path)
 	# Makes the TextEdit text the same as the file's
-	text_editor.text = file.get_as_text()
+	current_tab.get_node("TextEdit").text = file.get_as_text()
 	# Closes to prevent memory leaks
 	file.close()
 	# Changes the title to the file path
@@ -92,16 +111,17 @@ func save_as_file_selected(path):
 	# Creates and writes the file
 	var file = File.new()
 	file.open(path, 2)
-	file.store_string(text_editor.text)
+	file.store_string(current_tab.get_node("TextEdit").text)
 	# Closes to prevent memory leaks
 	file.close()
 	# Changes the title to the file path
 	current_file = path
 	title_update()
 
+
 func save_file():
 	# Changes the title to the file path
-	var path = current_file
+	var path = current_tab.file_path
 	# Checks if the file hasn't been created. If it has, then it triggers the 'Save As` Dialog
 	if path == UNTITLED:
 		save_as_file_dialog.popup()
@@ -109,7 +129,7 @@ func save_file():
 	else:
 		var file = File.new()
 		file.open(path, 2)
-		file.store_string(text_editor.text)
+		file.store_string(current_tab.get_node("TextEdit").text)
 		# Closes to prevent memory leaks
 		file.close()
 		# Changes the title to the file path
@@ -117,11 +137,17 @@ func save_file():
 
 # Signal for going to the recent file
 func go_to_recent(path):
+	#Do not open file if its already opened in editor.
+	#instead switch to that tab
+	if is_file_open(path):
+		switch_to_tab(path)
+		return
+
 	# Creates and reads the file
 	var file = File.new()
 	file.open(path, 1)
 	# Makes the TextEdit text the same as the file's
-	text_editor.text = file.get_as_text()
+	current_tab.get_node("TextEdit").text = file.get_as_text()
 	# Closes to prevent memory leaks
 	file.close()
 	# Changes the title to the file path
@@ -133,3 +159,45 @@ func clear_recents():
 	for rcnt in $HSplitContainer/Sidebar/Recents/Recents.get_children():
 		# Deletes itself
 		rcnt.queue_free()
+
+
+#Create a new Tab
+func create_new_tab(file_path):
+	var tab = tab_scene.instance()
+	tab.file_path = file_path
+	
+	#Apply settings on new tab
+	var text_edit : TextEdit = tab.get_node("TextEdit")
+	text_edit.draw_tabs = GlobalData.settings.draw_tabs
+	text_edit.draw_spaces = GlobalData.settings.draw_spaces
+	text_edit.highlight_current_line = GlobalData.settings.highlight_current_line
+	text_edit.caret_block_mode = GlobalData.settings.caret_block_mode
+
+	#set as current tab
+	current_tab = tab
+
+	#add to tab container and switch to this tab
+	tab_container.add_child(tab)
+	tab_container.current_tab = tab_container.get_child_count() - 1
+
+
+#Check if File is open in editor
+func is_file_open(file_path : String) -> bool:
+	var tabs = tab_container.get_children()
+	for i in tabs:
+		if i.file_path == file_path:
+			return true
+	
+	return false
+
+
+#Switch to tab with given file path
+func switch_to_tab(file_path : String):
+	var tabs = tab_container.get_children()
+	var id = 0
+	for i in tabs:
+		if i.file_path == file_path:
+			current_tab = i
+			tab_container.current_tab = id
+		
+		id += 1
