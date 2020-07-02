@@ -16,16 +16,17 @@ func _ready():
 	title_update()
 
 #Get file name from File path
+#e.g "user/folder/file.txt" will return "file.txt" 
 func get_file_name(file : String):
 	var strings = file.split("/")
 	return strings[strings.size() - 1]
 
 
-#Update title and tab title
+#Update title
 func title_update():
 	# This sets the title for the current title
 	OS.set_window_title('Signum - ' + current_file)
-	current_tab.name = get_file_name(current_file)
+	
 
 
 # File Menu IDs:
@@ -73,6 +74,7 @@ func help_item_pressed(id):
 # Creates a new file
 func new_file():
 	current_file = UNTITLED
+	create_new_tab(UNTITLED)
 	title_update()
 	# Resets the text back to nothing
 	current_tab.get_node("TextEdit").text = ''
@@ -105,6 +107,7 @@ func open_file_selected(path):
 		button.text = path.get_file()
 		# Signal to go to the recent file
 		button.connect("pressed", self, "go_to_recent", [path])
+
 
 # Saves the file as a file type
 func save_as_file_selected(path):
@@ -171,10 +174,15 @@ func create_new_tab(file_path):
 
 	#set as current tab
 	current_tab = tab
-
+	
 	#add to tab container and switch to this tab
 	tab_container.add_child(tab)
-	tab_container.current_tab = tab_container.get_child_count() - 1
+	var tab_id =  tab_container.get_child_count() - 1
+	#switch to tab "tab_id"
+	tab_container.current_tab = tab_id
+	#set tab title to file name
+	tab_container.set_tab_title(tab_id, get_file_name(file_path))
+	
 
 
 #Check if File is open in editor
