@@ -9,7 +9,8 @@ var settings = {
 	draw_spaces = false,
 	highlight_current_line = true,
 	caret_block_mode = false,
-	show_line_numbers = true
+	show_line_numbers = true,
+	selected_theme_id = 0
 }
 
 
