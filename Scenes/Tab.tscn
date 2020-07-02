@@ -10,6 +10,9 @@ margin_left = 5.0
 margin_top = 29.0
 margin_right = -5.0
 margin_bottom = -5.0
+grow_horizontal = 2
+tab_close_display_policy = 1
+drag_to_rearrange_enabled = true
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -34,3 +37,4 @@ caret_blink = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="tab_close" from="." to="." method="_on_Tabs_tab_close"]

@@ -234,6 +234,7 @@ margin_left = 258.0
 margin_right = 1004.0
 margin_bottom = 548.0
 tab_align = 0
+drag_to_rearrange_enabled = true
 
 [node name="Tabs" parent="HSplitContainer/TabContainer" instance=ExtResource( 1 )]
 
