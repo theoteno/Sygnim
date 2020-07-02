@@ -25,4 +25,8 @@ func caret_toggled(button_pressed):
 	GlobalData.settings.caret_block_mode = button_pressed
 	GlobalData.apply_settings_to_opened_tabs()
 
+# Toggles line numbers
+func show_line_numbers_toggled(button_pressed):
+	GlobalData.settings.show_line_numbers = button_pressed
+	GlobalData.apply_settings_to_opened_tabs()
 

@@ -161,17 +161,13 @@ func clear_recents():
 		rcnt.queue_free()
 
 
-#Create a new Tab
+#Create a new Tab 
 func create_new_tab(file_path):
 	var tab = tab_scene.instance()
 	tab.file_path = file_path
 	
-	#Apply settings on new tab
-	var text_edit : TextEdit = tab.get_node("TextEdit")
-	text_edit.draw_tabs = GlobalData.settings.draw_tabs
-	text_edit.draw_spaces = GlobalData.settings.draw_spaces
-	text_edit.highlight_current_line = GlobalData.settings.highlight_current_line
-	text_edit.caret_block_mode = GlobalData.settings.caret_block_mode
+	#Apply Editor settings to this tab
+	GlobalData.apply_settings_to_tab(tab)
 
 	#set as current tab
 	current_tab = tab

@@ -7,7 +7,8 @@ var settings = {
 	draw_tabs = true,
 	draw_spaces = false,
 	highlight_current_line = true,
-	caret_block_mode = false
+	caret_block_mode = false,
+	show_line_numbers = false
 }
 
 
@@ -19,12 +20,16 @@ func apply_settings_to_opened_tabs():
 	if tab_container:
 		var tabs = tab_container.get_children()
 		
-		#get Tabs
+		#Apply settings to all tabs
 		for i in tabs:
-			var text_edit : TextEdit = i.get_node("TextEdit")
-			text_edit.draw_tabs = settings.draw_tabs
-			text_edit.draw_spaces = settings.draw_spaces
-			text_edit.highlight_current_line = settings.highlight_current_line
-			text_edit.caret_block_mode = settings.caret_block_mode
+			apply_settings_to_tab(i)
 
 
+#Apply editor settings to the tab
+func apply_settings_to_tab(Tab):
+	var text_edit : TextEdit = Tab.get_node("TextEdit")
+	text_edit.draw_tabs = settings.draw_tabs
+	text_edit.draw_spaces = settings.draw_spaces
+	text_edit.highlight_current_line = settings.highlight_current_line
+	text_edit.caret_block_mode = settings.caret_block_mode
+	text_edit.show_line_numbers = settings.show_line_numbers
