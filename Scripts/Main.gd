@@ -16,8 +16,17 @@ var max_recents = 10
 
 func _ready():
 	title_update()
-	#Create new file
-	new_file()
+	
+	# Restore previous session (Load previously opened files)
+	if GlobalData.settings.last_opened_files.size() != 0:
+		#Open previously opened files
+		for i in GlobalData.settings.last_opened_files:
+			open_file_selected(i)
+	else:
+		#Create new file
+		new_file()
+
+
 
 #Get file name from File path
 #e.g "user/folder/file.txt" will return "file.txt" 
@@ -91,8 +100,13 @@ func open_file_selected(path):
 		switch_to_tab(path)
 		return
 	
-	# Creates and reads the file
 	var file = File.new()
+	#Check existence of file
+	if not file.file_exists(path):
+		print("Failed to open %s" % [path])
+		return
+		
+	# Creates and reads the file
 	file.open(path, 1)
 	create_new_tab(path)
 	# Makes the TextEdit text the same as the file's
@@ -131,7 +145,7 @@ func save_as_file_selected(path):
 
 
 func save_file():
-	# Path to file, 
+	# Path to file
 	var path = current_tab.file_path
 	# Checks if the file hasn't been created. If it has, then it triggers the 'Save As` Dialog
 	if path == UNTITLED:
