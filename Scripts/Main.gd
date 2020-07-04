@@ -6,7 +6,9 @@ onready var save_as_file_dialog = get_node('SaveAsFileDialog')
 onready var open_file_dialog = get_node('OpenFileDialog')
 onready var about_popup = get_node('AboutPopup')
 onready var tab_container = get_node("HSplitContainer/TabContainer")
-onready var current_tab = get_node("HSplitContainer/TabContainer/Tabs")
+
+#Reference to current working tab
+var current_tab = null
 
 const UNTITLED = 'Untitled'
 var current_file = UNTITLED
@@ -14,6 +16,8 @@ var max_recents = 10
 
 func _ready():
 	title_update()
+	#Create new file
+	new_file()
 
 #Get file name from File path
 #e.g "user/folder/file.txt" will return "file.txt" 
@@ -120,10 +124,14 @@ func save_as_file_selected(path):
 	# Changes the title to the file path
 	current_file = path
 	title_update()
+	# Changes tab title to file name
+	tab_container.set_tab_title(tab_container.current_tab, get_file_name(current_file))
+	
+	current_tab.file_path = current_file
 
 
 func save_file():
-	# Changes the title to the file path
+	# Path to file, 
 	var path = current_tab.file_path
 	# Checks if the file hasn't been created. If it has, then it triggers the 'Save As` Dialog
 	if path == UNTITLED:
@@ -205,3 +213,8 @@ func switch_to_tab(file_path : String):
 			tab_container.current_tab = id
 		
 		id += 1
+
+
+func _on_TabContainer_tab_changed(tab):
+	current_tab = tab_container.get_child(tab)
+	print(current_tab.file_path)
