@@ -10,7 +10,10 @@ var settings = {
 	highlight_current_line = true,
 	caret_block_mode = false,
 	show_line_numbers = true,
-	selected_theme_id = 0
+	selected_theme_id = 0,
+	
+	#Last opened files
+	last_opened_files = []
 }
 
 
@@ -108,7 +111,22 @@ func _notification(what):
 
 func _on_exit():
 	print("saving .....")
+	#Save list of opended files
+	saveSession()
 	#save settings
 	save_data(settings_path, settings)
 	#quit/stop program
 	get_tree().quit(0)
+
+#This function adds opened files to "settings.last_opened_files"
+func saveSession():
+	#Clear list
+	GlobalData.settings.last_opened_files.clear()
+	#Get opened tabs
+	var tabs = get_tree().get_nodes_in_group("Tabs")
+	#Append opened files
+	for i in tabs:
+		#Exclude Untitled files
+		if i.file_path != 'Untitled':
+			settings.last_opened_files.append(i.file_path)
+

@@ -1,5 +1,5 @@
 extends Tabs
 
-var tab_id : int  = 0
+#Path to file
 var file_path : String = "Untitled"
 

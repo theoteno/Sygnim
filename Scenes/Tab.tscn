@@ -4,7 +4,9 @@
 [ext_resource path="res://Scripts/Tab.gd" type="Script" id=2]
 [ext_resource path="res://Resources/close.png" type="Texture" id=3]
 
-[node name="Tabs" type="Tabs"]
+[node name="Tabs" type="Tabs" groups=[
+"Tabs",
+]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0

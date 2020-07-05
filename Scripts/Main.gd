@@ -6,7 +6,9 @@ onready var save_as_file_dialog = get_node('SaveAsFileDialog')
 onready var open_file_dialog = get_node('OpenFileDialog')
 onready var about_popup = get_node('AboutPopup')
 onready var tab_container = get_node("HSplitContainer/TabContainer")
-onready var current_tab = get_node("HSplitContainer/TabContainer/Tabs")
+
+#Reference to current working tab
+var current_tab = null
 
 const UNTITLED = 'Untitled'
 var current_file = UNTITLED
@@ -14,6 +16,17 @@ var max_recents = 10
 
 func _ready():
 	title_update()
+	
+	# Restore previous session (Load previously opened files)
+	if GlobalData.settings.last_opened_files.size() != 0:
+		#Open previously opened files
+		for i in GlobalData.settings.last_opened_files:
+			open_file_selected(i)
+	else:
+		#Create new file
+		new_file()
+
+
 
 #Get file name from File path
 #e.g "user/folder/file.txt" will return "file.txt" 
@@ -87,8 +100,13 @@ func open_file_selected(path):
 		switch_to_tab(path)
 		return
 	
-	# Creates and reads the file
 	var file = File.new()
+	#Check existence of file
+	if not file.file_exists(path):
+		print("Failed to open %s" % [path])
+		return
+		
+	# Creates and reads the file
 	file.open(path, 1)
 	create_new_tab(path)
 	# Makes the TextEdit text the same as the file's
@@ -120,10 +138,14 @@ func save_as_file_selected(path):
 	# Changes the title to the file path
 	current_file = path
 	title_update()
+	# Changes tab title to file name
+	tab_container.set_tab_title(tab_container.current_tab, get_file_name(current_file))
+	
+	current_tab.file_path = current_file
 
 
 func save_file():
-	# Changes the title to the file path
+	# Path to file
 	var path = current_tab.file_path
 	# Checks if the file hasn't been created. If it has, then it triggers the 'Save As` Dialog
 	if path == UNTITLED:
@@ -205,3 +227,8 @@ func switch_to_tab(file_path : String):
 			tab_container.current_tab = id
 		
 		id += 1
+
+
+func _on_TabContainer_tab_changed(tab):
+	current_tab = tab_container.get_child(tab)
+	print(current_tab.file_path)
