@@ -228,12 +228,25 @@ enabled_focus_mode = 0
 text = "Default"
 script = ExtResource( 9 )
 
-[node name="TabContainer" type="TabContainer" parent="HSplitContainer"]
+[node name="Editor" type="Control" parent="HSplitContainer"]
 margin_left = 258.0
 margin_right = 1004.0
 margin_bottom = 548.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="Tabs" parent="HSplitContainer/Editor"]
+anchor_right = 1.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 24 )
+size_flags_horizontal = 3
 tab_align = 0
+tab_close_display_policy = 2
 drag_to_rearrange_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="OpenFileDialog" type="FileDialog" parent="."]
 anchor_left = 0.5
@@ -356,6 +369,8 @@ texture = ExtResource( 8 )
 [connection signal="toggled" from="HSplitContainer/Sidebar/Settings/ShowLineNumbers/CheckButton" to="HSplitContainer/Sidebar/Settings" method="show_line_numbers_toggled"]
 [connection signal="toggled" from="HSplitContainer/Sidebar/Settings/Caret/CheckButton" to="HSplitContainer/Sidebar/Settings" method="caret_toggled"]
 [connection signal="item_selected" from="HSplitContainer/Sidebar/Settings/Theme/ThemeButton" to="HSplitContainer/Sidebar/Settings/Theme/ThemeButton" method="theme_select"]
-[connection signal="tab_changed" from="HSplitContainer/TabContainer" to="." method="_on_TabContainer_tab_changed"]
+[connection signal="reposition_active_tab_request" from="HSplitContainer/Editor/TabContainer" to="." method="_on_TabContainer_reposition_active_tab_request"]
+[connection signal="tab_changed" from="HSplitContainer/Editor/TabContainer" to="." method="_on_TabContainer_tab_changed"]
+[connection signal="tab_close" from="HSplitContainer/Editor/TabContainer" to="." method="_on_TabContainer_tab_close"]
 [connection signal="file_selected" from="OpenFileDialog" to="." method="open_file_selected"]
 [connection signal="file_selected" from="SaveAsFileDialog" to="." method="save_as_file_selected"]

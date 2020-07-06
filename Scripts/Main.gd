@@ -5,7 +5,7 @@ var tab_scene = preload("res://Scenes/Tab.tscn")
 onready var save_as_file_dialog = get_node('SaveAsFileDialog')
 onready var open_file_dialog = get_node('OpenFileDialog')
 onready var about_popup = get_node('AboutPopup')
-onready var tab_container = get_node("HSplitContainer/TabContainer")
+onready var tab_container = get_node("HSplitContainer/Editor/TabContainer")
 
 #Reference to current working tab
 var current_tab = null
@@ -25,7 +25,6 @@ func _ready():
 	else:
 		#Create new file
 		new_file()
-
 
 
 #Get file name from File path
@@ -199,11 +198,12 @@ func create_new_tab(file_path):
 	
 	#add to tab container and switch to this tab
 	tab_container.add_child(tab)
+	tab_container.add_tab(get_file_name(file_path))
 	var tab_id =  tab_container.get_child_count() - 1
 	#switch to tab "tab_id"
 	tab_container.current_tab = tab_id
 	#set tab title to file name
-	tab_container.set_tab_title(tab_id, get_file_name(file_path))
+	#tab_container.set_tab_title(tab_id, get_file_name(file_path))
 	
 
 
@@ -229,6 +229,50 @@ func switch_to_tab(file_path : String):
 		id += 1
 
 
+#Tab changed
 func _on_TabContainer_tab_changed(tab):
+	var tabs = tab_container.get_children()
 	current_tab = tab_container.get_child(tab)
-	print(current_tab.file_path)
+	#Hide all tabs
+	for i in tabs:
+		i.hide()
+	
+	#Show current tab
+	current_tab.show()
+
+
+#Handle tab repositioning ( Called when user moves tabs)
+func _on_TabContainer_reposition_active_tab_request(idx_to):
+	var idx_from = tab_container.current_tab
+	var tc = tab_container
+	
+	#Tab moved left to right
+	if idx_to > idx_from:
+		#re-arrange children
+		for i in range(idx_from + 1, idx_to + 1):
+			tc.move_child(tc.get_child(i),i - 1)
+	
+	#Tab moved right to left
+	else:
+		#re-arrange children
+		for i in range(idx_from - 1, idx_to - 1, -1):
+			tc.move_child(tc.get_child(i),i + 1)
+
+
+#Handle tab close
+func _on_TabContainer_tab_close(tab): 
+	#Only 1 file is open, create new untitled file
+	if tab_container.get_tab_count() == 1:
+		new_file()
+	
+	#If first tab then switch to next tab
+	if tab == 0:
+		_on_TabContainer_tab_changed(tab + 1)
+	#Switch to previous tab
+	else:
+		_on_TabContainer_tab_changed(tab - 1)
+		
+	#Remove tab
+	tab_container.get_child(tab).queue_free()
+	tab_container.remove_tab(tab)
+
