@@ -262,8 +262,8 @@ window_title = "Open a File"
 resizable = true
 mode = 0
 access = 2
-current_dir = "/home/bera/Documents/godotProjects/Signum"
-current_path = "/home/bera/Documents/godotProjects/Signum/"
+current_dir = "/home/raptor/program/godot/signum/Signum"
+current_path = "/home/raptor/program/godot/signum/Signum/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -280,8 +280,8 @@ margin_bottom = 204.416
 popup_exclusive = true
 resizable = true
 access = 2
-current_dir = "/home/bera/Documents/godotProjects/Signum"
-current_path = "/home/bera/Documents/godotProjects/Signum/"
+current_dir = "/home/raptor/program/godot/signum/Signum"
+current_path = "/home/raptor/program/godot/signum/Signum/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
