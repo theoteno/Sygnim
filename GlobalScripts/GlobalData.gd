@@ -20,7 +20,7 @@ var settings = {
 #Apply settings to opened tabs
 func apply_settings_to_opened_tabs():
 	#Get Tab container
-	var tab_container = get_node('/root/Main/HSplitContainer/TabContainer')
+	var tab_container = get_node('/root/Main/HSplitContainer/Editor/TabContainer')
 	
 	if tab_container:
 		var tabs = tab_container.get_children()
