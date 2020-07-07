@@ -13,21 +13,31 @@ var settings = {
 	selected_theme_id = 0,
 	
 	#Last opened files
-	last_opened_files = []
+	last_opened_files = [],
+	
+	current_syntax_theme_id = 0
+}
+
+
+var syntax_themes = [
+	"res://Themes/Editor_themes/Atom-Dark.thm",
+	"res://Themes/Editor_themes/Monokai.thm"
+	]
+
+var current_syntax_theme = {
+	custom_colors = {},
+	keyword_colors = {},
+	color_regions = {}
 }
 
 
 #Apply settings to opened tabs
 func apply_settings_to_opened_tabs():
-	#Get Tab container
-	var tab_container = get_node('/root/Main/HSplitContainer/Editor/TabContainer')
-	
-	if tab_container:
-		var tabs = tab_container.get_children()
-		
-		#Apply settings to all tabs
-		for i in tabs:
-			apply_settings_to_tab(i)
+	#Get Tab opened tabs
+	var tabs = get_tree().get_nodes_in_group("Tabs")
+	#Apply settings to all tabs
+	for i in tabs:
+		apply_settings_to_tab(i)
 
 
 #Apply editor settings to the tab
@@ -99,6 +109,10 @@ func _ready():
 	#we can also use settings = settings_dict but its unsafe
 	cpy_dictionary(settings, settings_dict)
 	
+	#load syntax theme
+	load_syntax_theme(settings.current_syntax_theme_id)
+	
+	
 
 #Handle quit, As we need to save settings before we close the program
 func _notification(what):
@@ -121,7 +135,7 @@ func _on_exit():
 #This function adds opened files to "settings.last_opened_files"
 func saveSession():
 	#Clear list
-	GlobalData.settings.last_opened_files.clear()
+	settings.last_opened_files.clear()
 	#Get opened tabs
 	var tabs = get_tree().get_nodes_in_group("Tabs")
 	#Append opened files
@@ -130,3 +144,104 @@ func saveSession():
 		if i.file_path != 'Untitled':
 			settings.last_opened_files.append(i.file_path)
 
+
+func load_syntax_theme(theme_id):
+	#set as current syntax theme
+	settings.current_syntax_theme_id = theme_id
+	
+	#Syntax Theme id 0 is default theme i.e same as main theme
+	if theme_id == 0:
+		return
+	
+	var file = File.new()
+	#Open syntax Theme file
+	file.open(syntax_themes[theme_id - 1], File.READ)
+	
+	#Clear previous colors
+	current_syntax_theme.custom_colors.clear()
+	current_syntax_theme.keyword_colors.clear()
+	current_syntax_theme.color_regions.clear()
+	
+	var input_type = ""
+	
+	#Parse file till the end
+	while( not file.eof_reached()):
+		var line = file.get_line()
+		
+		#Check input Type
+		if line == "[custom_colors]":
+			input_type = "cc"
+			continue
+		elif line == "[keyword_colors]":
+			input_type = "kc"
+			continue
+		elif line == "[color_regions]":
+			input_type = "cr"
+			continue
+		
+		#Input type is cc (Read custom colors)
+		if input_type == "cc":
+			var strings = line.split("=")
+			
+			if strings.size() == 2:
+				var property = "custom_colors/" + strings[0]
+				var color = strings[1]
+				current_syntax_theme.custom_colors[property] = color
+		
+		#Input type is kc (Read keyword colors)
+		elif input_type =="kc":
+			var strings = line.split("=")
+			
+			if strings.size() == 2:
+				var keyword = strings[0]
+				var color = strings[1]
+				current_syntax_theme.keyword_colors[keyword] = color
+		
+		#Input type is cr (Read color regions)
+		elif input_type =="cr":
+			var strings = line.split("=")
+			
+			if strings.size() == 2:
+				var Strings = strings[0]
+				var color = strings[1]
+				current_syntax_theme.color_regions[Strings] = color
+	
+	#Close file
+	file.close()
+
+func apply_syntax_theme_to_opened_tabs():
+	var tabs = get_tree().get_nodes_in_group("Tabs")
+	for i in tabs:
+		apply_syntax_theme_to_tab(i)
+
+func apply_syntax_theme_to_tab(Tab):
+	var text_edit : TextEdit = Tab.get_node("TextEdit")
+	
+	# Reset to default theme  ( syntax Theme id 0 is default theme i.e same as main Theme)
+	if settings.current_syntax_theme_id == 0:
+		# Set custom colors to null
+		var properties = current_syntax_theme.custom_colors.keys()
+		for i in properties:
+			text_edit.set(i, null)
+		
+		#Clear custom syntax highlighting
+		text_edit.clear_colors()
+		return
+	
+	
+	#Apply custom colors
+	var properties = current_syntax_theme.custom_colors.keys()
+	for i in properties:
+		text_edit.set(i, Color(current_syntax_theme.custom_colors[i]))
+	
+	#Apply custom keyword colors
+	var keywords =  current_syntax_theme.keyword_colors.keys()
+	for i in keywords:
+		text_edit.add_keyword_color(i, Color(current_syntax_theme.keyword_colors[i]))
+	
+	#Add color regions
+	var regions = current_syntax_theme.color_regions.keys()
+	for i in regions:
+		var strings = i.split(",")
+		var color = Color(current_syntax_theme.color_regions[i])
+		text_edit.add_color_region(strings[0], strings[1], color)

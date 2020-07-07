@@ -28,6 +28,7 @@ show_line_numbers = true
 draw_tabs = true
 fold_gutter = true
 highlight_all_occurrences = true
+override_selected_font_color = true
 smooth_scrolling = true
 minimap_draw = true
 caret_blink = true

@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
+[ext_resource path="res://Scripts/EThemeButton.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/Montserrat-Regular.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=3]
 [ext_resource path="res://Fonts/Montserrat-Regular.otf" type="DynamicFontData" id=4]
@@ -228,6 +229,28 @@ enabled_focus_mode = 0
 text = "Default"
 script = ExtResource( 9 )
 
+[node name="Syntax_Theme" type="HBoxContainer" parent="HSplitContainer/Sidebar/Settings"]
+margin_top = 220.0
+margin_right = 240.0
+margin_bottom = 246.0
+
+[node name="Label" type="Label" parent="HSplitContainer/Sidebar/Settings/Syntax_Theme"]
+margin_right = 107.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 2 )
+text = "Syntax Theme"
+
+[node name="EThemeButton" type="OptionButton" parent="HSplitContainer/Sidebar/Settings/Syntax_Theme"]
+margin_left = 111.0
+margin_right = 240.0
+margin_bottom = 26.0
+focus_mode = 0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
+enabled_focus_mode = 0
+text = "Default"
+script = ExtResource( 1 )
+
 [node name="Editor" type="Control" parent="HSplitContainer"]
 margin_left = 258.0
 margin_right = 1004.0
@@ -262,8 +285,8 @@ window_title = "Open a File"
 resizable = true
 mode = 0
 access = 2
-current_dir = "/home/bera/Documents/godotProjects/Signum"
-current_path = "/home/bera/Documents/godotProjects/Signum/"
+current_dir = "/home/raptor/program/godot/signum/Signum"
+current_path = "/home/raptor/program/godot/signum/Signum/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -280,8 +303,8 @@ margin_bottom = 204.416
 popup_exclusive = true
 resizable = true
 access = 2
-current_dir = "/home/bera/Documents/godotProjects/Signum"
-current_path = "/home/bera/Documents/godotProjects/Signum/"
+current_dir = "/home/raptor/program/godot/signum/Signum"
+current_path = "/home/raptor/program/godot/signum/Signum/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -369,6 +392,7 @@ texture = ExtResource( 8 )
 [connection signal="toggled" from="HSplitContainer/Sidebar/Settings/ShowLineNumbers/CheckButton" to="HSplitContainer/Sidebar/Settings" method="show_line_numbers_toggled"]
 [connection signal="toggled" from="HSplitContainer/Sidebar/Settings/Caret/CheckButton" to="HSplitContainer/Sidebar/Settings" method="caret_toggled"]
 [connection signal="item_selected" from="HSplitContainer/Sidebar/Settings/Theme/ThemeButton" to="HSplitContainer/Sidebar/Settings/Theme/ThemeButton" method="theme_select"]
+[connection signal="item_selected" from="HSplitContainer/Sidebar/Settings/Syntax_Theme/EThemeButton" to="HSplitContainer/Sidebar/Settings/Syntax_Theme/EThemeButton" method="_on_EThemeButton_item_selected"]
 [connection signal="reposition_active_tab_request" from="HSplitContainer/Editor/TabContainer" to="." method="_on_TabContainer_reposition_active_tab_request"]
 [connection signal="tab_changed" from="HSplitContainer/Editor/TabContainer" to="." method="_on_TabContainer_tab_changed"]
 [connection signal="tab_close" from="HSplitContainer/Editor/TabContainer" to="." method="_on_TabContainer_tab_close"]
