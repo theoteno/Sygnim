@@ -192,6 +192,8 @@ func create_new_tab(file_path):
 	
 	#Apply Editor settings to this tab
 	GlobalData.apply_settings_to_tab(tab)
+	#Apply syntax theme to this tab
+	GlobalData.apply_syntax_theme_to_tab(tab)
 
 	#set as current tab
 	current_tab = tab
