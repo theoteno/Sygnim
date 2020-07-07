@@ -33,15 +33,11 @@ var current_syntax_theme = {
 
 #Apply settings to opened tabs
 func apply_settings_to_opened_tabs():
-	#Get Tab container
-	var tab_container = get_node('/root/Main/HSplitContainer/Editor/TabContainer')
-	
-	if tab_container:
-		var tabs = tab_container.get_children()
-		
-		#Apply settings to all tabs
-		for i in tabs:
-			apply_settings_to_tab(i)
+	#Get Tab opened tabs
+	var tabs = get_tree().get_nodes_in_group("Tabs")
+	#Apply settings to all tabs
+	for i in tabs:
+		apply_settings_to_tab(i)
 
 
 #Apply editor settings to the tab
