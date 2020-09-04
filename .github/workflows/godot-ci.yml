@@ -2,8 +2,7 @@ name: "godot-ci export"
 on:
   release:
     types: [released, prereleased]
-  schedule:
-    - cron: '0 0 * * *'
+  push:
   pull_request: 
     
 
