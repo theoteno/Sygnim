@@ -87,7 +87,7 @@ func load_data(save_path : String):
 	return data
 
 
-#Copy dictionary drom source to destination dictionary
+#Copy dictionary from source to destination dictionary
 func cpy_dictionary(dest_D : Dictionary, src_D : Dictionary):
 	var keys = src_D.keys()
 	for i in keys:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/EThemeButton.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/Montserrat-Regular.tres" type="DynamicFont" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Resources/Logo.png" type="Texture" id=8]
 [ext_resource path="res://Scripts/ThemeSelect.gd" type="Script" id=9]
 [ext_resource path="res://Themes/godot_theme.tres" type="Theme" id=10]
+[ext_resource path="res://Scenes/Tree.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 14
@@ -27,7 +28,9 @@ font_data = ExtResource( 4 )
 size = 20
 font_data = ExtResource( 4 )
 
-[node name="Main" type="Control"]
+[node name="Main" type="Control" groups=[
+"Main",
+]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 10 )
@@ -64,36 +67,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Recents" type="VBoxContainer" parent="HSplitContainer/Sidebar"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 41.0
-margin_right = -5.0
-margin_bottom = -5.0
-rect_min_size = Vector2( 175, 0 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Button" type="Button" parent="HSplitContainer/Sidebar/Recents"]
-margin_right = 240.0
-margin_bottom = 34.0
-focus_mode = 0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 2 )
-enabled_focus_mode = 0
-text = "Clear Recents"
-
-[node name="Recents" type="VBoxContainer" parent="HSplitContainer/Sidebar/Recents"]
-margin_top = 38.0
-margin_right = 240.0
-margin_bottom = 502.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 15
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Tree" parent="HSplitContainer/Sidebar" instance=ExtResource( 11 )]
 
 [node name="Settings" type="VBoxContainer" parent="HSplitContainer/Sidebar"]
 visible = false
@@ -251,6 +225,38 @@ enabled_focus_mode = 0
 text = "Default"
 script = ExtResource( 1 )
 
+[node name="Recents" type="VBoxContainer" parent="HSplitContainer/Sidebar"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 41.0
+margin_right = -5.0
+margin_bottom = -5.0
+rect_min_size = Vector2( 175, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="HSplitContainer/Sidebar/Recents"]
+margin_right = 240.0
+margin_bottom = 34.0
+focus_mode = 0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+enabled_focus_mode = 0
+text = "Clear Recents"
+
+[node name="Recents" type="VBoxContainer" parent="HSplitContainer/Sidebar/Recents"]
+margin_top = 38.0
+margin_right = 240.0
+margin_bottom = 502.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Editor" type="Control" parent="HSplitContainer"]
 margin_left = 258.0
 margin_right = 1004.0
@@ -271,7 +277,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OpenFileDialog" type="FileDialog" parent="."]
+[node name="OpenFileDialog" type="FileDialog" parent="." groups=[
+"FileSelector",
+]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -385,7 +393,6 @@ __meta__ = {
 position = Vector2( 261.379, 86.3293 )
 scale = Vector2( 0.104424, 0.110105 )
 texture = ExtResource( 8 )
-[connection signal="pressed" from="HSplitContainer/Sidebar/Recents/Button" to="." method="clear_recents"]
 [connection signal="toggled" from="HSplitContainer/Sidebar/Settings/DrawTabs/CheckButton" to="HSplitContainer/Sidebar/Settings" method="draw_tabs_toggled"]
 [connection signal="toggled" from="HSplitContainer/Sidebar/Settings/DrawSpaces/CheckButton" to="HSplitContainer/Sidebar/Settings" method="draw_spaces_toggled"]
 [connection signal="toggled" from="HSplitContainer/Sidebar/Settings/HighlightCurrent/CheckButton" to="HSplitContainer/Sidebar/Settings" method="highlight_current_line_toggled"]
@@ -393,6 +400,7 @@ texture = ExtResource( 8 )
 [connection signal="toggled" from="HSplitContainer/Sidebar/Settings/Caret/CheckButton" to="HSplitContainer/Sidebar/Settings" method="caret_toggled"]
 [connection signal="item_selected" from="HSplitContainer/Sidebar/Settings/Theme/ThemeButton" to="HSplitContainer/Sidebar/Settings/Theme/ThemeButton" method="theme_select"]
 [connection signal="item_selected" from="HSplitContainer/Sidebar/Settings/Syntax_Theme/EThemeButton" to="HSplitContainer/Sidebar/Settings/Syntax_Theme/EThemeButton" method="_on_EThemeButton_item_selected"]
+[connection signal="pressed" from="HSplitContainer/Sidebar/Recents/Button" to="." method="clear_recents"]
 [connection signal="reposition_active_tab_request" from="HSplitContainer/Editor/TabContainer" to="." method="_on_TabContainer_reposition_active_tab_request"]
 [connection signal="tab_changed" from="HSplitContainer/Editor/TabContainer" to="." method="_on_TabContainer_tab_changed"]
 [connection signal="tab_close" from="HSplitContainer/Editor/TabContainer" to="." method="_on_TabContainer_tab_close"]
