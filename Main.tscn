@@ -59,9 +59,9 @@ __meta__ = {
 }
 
 [node name="Sidebar" type="TabContainer" parent="HSplitContainer"]
-margin_right = 270.0
+margin_right = 250.0
 margin_bottom = 548.0
-rect_min_size = Vector2( 270, 0 )
+rect_min_size = Vector2( 250, 0 )
 custom_fonts/font = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -258,7 +258,7 @@ __meta__ = {
 }
 
 [node name="Editor" type="Control" parent="HSplitContainer"]
-margin_left = 278.0
+margin_left = 258.0
 margin_right = 1004.0
 margin_bottom = 548.0
 __meta__ = {
