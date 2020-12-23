@@ -1,6 +1,5 @@
 extends OptionButton
 
-
 func _ready():
 	add_item("Default", 0)
 	add_item("Atom Dark", 1)
