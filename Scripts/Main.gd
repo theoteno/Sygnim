@@ -30,8 +30,7 @@ func _ready():
 #Get file name from File path
 #e.g "user/folder/file.txt" will return "file.txt" 
 func get_file_name(file : String):
-	var strings = file.split("/")
-	return strings[strings.size() - 1]
+	return file.get_file()
 
 
 #Update title
