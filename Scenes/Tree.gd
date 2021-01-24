@@ -51,7 +51,7 @@ func setup_dir(dir_path : String):
 	
 	var file_name = dir.get_next()
 	root_dir = create_item()
-	root_dir.set_text(0, get_directory_name(dir_path))
+	root_dir.set_text(0, get_directory_name(dir_path) + "/")
 	# Get dir contents
 	while file_name != "":
 		if file_name != ".":
@@ -87,7 +87,7 @@ func _on_Tree_item_selected():
 	if selected_file == "..":
 		var path = base_dir.get_base_dir()
 		setup_dir(path)
-	else:
+	elif selected_file != root_dir.get_text(0):
 		var path = base_dir + "/" + selected_file
 		var file : File = File.new()
 		# Chk file is folder or directory
