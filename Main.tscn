@@ -294,8 +294,8 @@ window_title = "Open a File"
 resizable = true
 mode = 0
 access = 2
-current_dir = "/Users/mintstudios/Desktop/Signum"
-current_path = "/Users/mintstudios/Desktop/Signum/"
+current_dir = "/home/raptor/program/godot/signum/Signum"
+current_path = "/home/raptor/program/godot/signum/Signum/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -313,8 +313,8 @@ rect_min_size = Vector2( 400, 140 )
 popup_exclusive = true
 resizable = true
 access = 2
-current_dir = "/Users/mintstudios/Desktop/Signum"
-current_path = "/Users/mintstudios/Desktop/Signum/"
+current_dir = "/home/raptor/program/godot/signum/Signum"
+current_path = "/home/raptor/program/godot/signum/Signum/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -395,7 +395,6 @@ __meta__ = {
 position = Vector2( 261.379, 86.3293 )
 scale = Vector2( 0.104424, 0.110105 )
 texture = ExtResource( 8 )
-
 [connection signal="toggled" from="HSplitContainer/Sidebar/Settings/DrawTabs/CheckButton" to="HSplitContainer/Sidebar/Settings" method="draw_tabs_toggled"]
 [connection signal="toggled" from="HSplitContainer/Sidebar/Settings/DrawSpaces/CheckButton" to="HSplitContainer/Sidebar/Settings" method="draw_spaces_toggled"]
 [connection signal="toggled" from="HSplitContainer/Sidebar/Settings/HighlightCurrent/CheckButton" to="HSplitContainer/Sidebar/Settings" method="highlight_current_line_toggled"]
