@@ -46,3 +46,11 @@ func dictionaryCpy(dest_D : Dictionary, src_D : Dictionary):
     for i in keys:
         if dest_D.has(i):
             dest_D[i] = src_D[i]
+
+
+# Get file name from File path
+#e.g "user/folder/file.txt" will return "file.txt" 
+func getFileName(file : String):
+    if file == "":
+        return "UNTITLED"
+    return file.get_file()

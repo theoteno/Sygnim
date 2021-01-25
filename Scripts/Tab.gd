@@ -5,6 +5,7 @@ var file_path : String  = ""
 var file_name : String  = "Untitled"
 var file_type : String  = "Text"
 var tab_ready : bool    = false
+var tab_id    : int     = 0
 
 onready var text_edit_box = get_node("TextEdit")
 onready var editor = get_parent().get_parent()
