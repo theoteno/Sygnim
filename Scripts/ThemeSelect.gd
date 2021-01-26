@@ -1,31 +1,33 @@
 extends OptionButton
 
-# Theme array
-export var themes = [
-    "res://Themes/godot_theme.tres",
-    "res://Themes/solarized_theme.tres",
-    "res://Themes/clean_slate_theme.tres"
-]
-
 func _ready():
-    add_item("Godot", 0)
-    add_item("Solarized", 1)
-    add_item("Clean Slate", 2)
-    
-    # Set selected theme in option Button
-    selected = SignumSettings.settings.selected_theme_id
-    # Apply selected theme
-    # theme_select(SignumSettings.settings.selected_theme_id)
+    selected = _getThemeId(SignumSettings.settings.theme)
+    _loadItems()
+
+
+func _loadItems():
+    var themes = ThemeManager.themes.keys()
+    var id = 0
+    for i in themes:
+        add_item(i, id)
+        id += 1
+
 
 # Function to apply theme
 func theme_select(id):
-    get_tree().root.get_child(1).theme = load(themes[id])
-    if get_tree().root.get_child(1).theme == load(themes[2]):
-        get_node('/root/Main/ColorRect').color = Color('#ffffff')
-    if get_tree().root.get_child(1).theme == load(themes[1]):
-        get_node('/root/Main/ColorRect').color = Color('#dcd2bb')
-    if get_tree().root.get_child(1).theme == load(themes[0]):
-        get_node('/root/Main/ColorRect').color = Color('#191a2f')
+    pass
+    # get_tree().root.get_child(1).theme = load(themes[id])
+    # if get_tree().root.get_child(1).theme == load(themes[2]):
+    #     get_node('/root/Main/ColorRect').color = Color('#ffffff')
+    # if get_tree().root.get_child(1).theme == load(themes[1]):
+    #     get_node('/root/Main/ColorRect').color = Color('#dcd2bb')
+    # if get_tree().root.get_child(1).theme == load(themes[0]):
+    #     get_node('/root/Main/ColorRect').color = Color('#191a2f')
     
-    # Set selected theme id in global settings
-    SignumSettings.settings.selected_theme_id = id
+
+func _getThemeId(theme_name : String) -> int:
+    var count = get_item_count()
+    for i in range(count):
+        if get_item_text(i) == theme_name:
+            return i
+    return 0

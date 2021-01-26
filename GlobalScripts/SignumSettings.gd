@@ -10,10 +10,10 @@ var settings = {
     highlight_current_line = true,
     caret_block_mode = false,
     show_line_numbers = true,
-    selected_theme_id = 0,
     
     #Last opened files
     last_opened_files = [],
+    theme = "",
     syntax_theme = ""
 }
 
