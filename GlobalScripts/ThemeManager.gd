@@ -80,12 +80,12 @@ func _clearSyntaxTheme():
     syntax_theme.color_regions.clear()
 
 
-func applySyntaxToAllTabs():
+func applySyntaxThemeToAllTabs():
     var tabs = get_tree().get_nodes_in_group("Tabs")
     for i in tabs:
-        applySyntaxToTab(i)
+        applySyntaxThemeToTab(i)
 
-func applySyntaxToTab(tab):
+func applySyntaxThemeToTab(tab):
     var text_edit : TextEdit = tab.text_edit_box
     
     # Reset to default theme

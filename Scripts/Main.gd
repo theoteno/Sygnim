@@ -16,7 +16,7 @@ onready var tab_container = get_node("HSplitContainer/Editor/TabContainer")
 
 
 func _ready():
-    title_update()
+    updateWindowTitle()
     restorePreviousSession()
     
 
@@ -29,13 +29,10 @@ func restorePreviousSession():
         # Create new file
         newTab()
 
-
-
 #Update title
-func title_update():
+func updateWindowTitle():
     OS.set_window_title('Signum - ' + current_file)
     
-
 
 # File Menu IDs:
 # Open File = 0
@@ -65,7 +62,8 @@ func file_item_pressed(id):
             newTab()
         4:
             # Saves file without changing the name
-            save_file()
+            pass
+            #save_file()
 
 func help_item_pressed(id):
     match id:
@@ -79,21 +77,29 @@ func help_item_pressed(id):
             # Opens issues in github
             OS.shell_open('https://github.com/MintStudios/Signum/issues')
 
-# Creates a new file
-# func new_file():
-#     current_file = UNTITLED
-#     create_new_tab(UNTITLED)
-#     title_update()
-#     # Resets the text back to nothing
-#     current_tab.get_node("TextEdit").text = ''
 
-func newTab(path : String = ""):
+func newTab(path : String = UNTITLED):
+    if path == UNTITLED:
+        path = _getAvailableUntitledFileName()
+    if isFileOpen(path):
+        switchToTab(path)
+        return
+
     var new_tab = tab_scene.instance()
     tab_container.add_child(new_tab)
     tab_container.add_tab(path.get_file())
     new_tab.loadFromFile(path)
     var tab_id =  tab_container.get_child_count() - 1
     tab_container.current_tab = tab_id
+
+
+func _getAvailableUntitledFileName() -> String:
+    var file_name : String = UNTITLED
+    var count = 1
+    while (isFileOpen(file_name)):
+        file_name = file_name + count.to_string()
+        count += 1
+    return file_name
     
 
 # # Opens an existing file
@@ -131,45 +137,45 @@ func newTab(path : String = ""):
 #         button.connect("pressed", self, "go_to_recent", [path])
 
 
-# Saves the file as a file type
-func save_as_file_selected(path):
-    # Creates and writes the file
-    var file = File.new()
-    file.open(path, 2)
-    file.store_string(current_tab.get_node("TextEdit").text)
-    # Closes to prevent memory leaks
-    file.close()
-    # Changes the title to the file path
-    current_file = path
-    title_update()
-    # Changes tab title to file name
-    tab_container.set_tab_title(tab_container.current_tab, getFileName(current_file))
+# # Saves the file as a file type
+# func save_as_file_selected(path):
+#     # Creates and writes the file
+#     var file = File.new()
+#     file.open(path, 2)
+#     file.store_string(current_tab.get_node("TextEdit").text)
+#     # Closes to prevent memory leaks
+#     file.close()
+#     # Changes the title to the file path
+#     current_file = path
+#     title_update()
+#     # Changes tab title to file name
+#     tab_container.set_tab_title(tab_container.current_tab, getFileName(current_file))
     
-    current_tab.file_path = current_file
+#     current_tab.file_path = current_file
 
 
-func save_file():
-    # Path to file
-    var path = current_tab.file_path
-    # Checks if the file hasn't been created. If it has, then it triggers the 'Save As` Dialog
-    if path == UNTITLED:
-        save_as_file_dialog.popup()
-    # If the file exists, writes the file.
-    else:
-        var file = File.new()
-        file.open(path, 2)
-        file.store_string(current_tab.get_node("TextEdit").text)
-        # Closes to prevent memory leaks
-        file.close()
-        # Changes the title to the file path
-        current_file = path
+# func save_file():
+#     # Path to file
+#     var path = current_tab.file_path
+#     # Checks if the file hasn't been created. If it has, then it triggers the 'Save As` Dialog
+#     if path == UNTITLED:
+#         save_as_file_dialog.popup()
+#     # If the file exists, writes the file.
+#     else:
+#         var file = File.new()
+#         file.open(path, 2)
+#         file.store_string(current_tab.get_node("TextEdit").text)
+#         # Closes to prevent memory leaks
+#         file.close()
+#         # Changes the title to the file path
+#         current_file = path
 
 # Signal for going to the recent file
 func go_to_recent(path):
     #Do not open file if its already opened in editor.
     #instead switch to that tab
-    if is_file_open(path):
-        switch_to_tab(path)
+    if isFileOpen(path):
+        switchToTab(path)
         return
 
     # Creates and reads the file
@@ -181,7 +187,7 @@ func go_to_recent(path):
     file.close()
     # Changes the title to the file path
     current_file = path
-    title_update()
+    updateWindowTitle()
 
 # Clears the recents list
 func clear_recents():
@@ -189,7 +195,7 @@ func clear_recents():
         # Deletes itself
         rcnt.queue_free()
 
-#Check if File is open in editor
+# Check if File is open in editor
 func isFileOpen(file_path : String) -> bool:
     var tabs = tab_container.get_children()
     for i in tabs:
@@ -206,7 +212,6 @@ func switchToTab(file_path : String):
         if i.file_path == file_path:
             current_tab = i
             tab_container.current_tab = id
-        
         id += 1
 
 
@@ -244,7 +249,7 @@ func _on_TabContainer_reposition_active_tab_request(idx_to):
 func _on_TabContainer_tab_close(tab_id): 
     # If Only 1 file is open, create new untitled file
     if tab_container.get_tab_count() == 1:
-        new_file()
+        newTab()
     
     #If first tab then switch to next tab
     if tab_id == 0:

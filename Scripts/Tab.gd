@@ -24,7 +24,7 @@ func _ready():
     _on_Editor_resized()
     tab_ready = true
     SignumSettings.applySettingsToTab(self)
-    ThemeManager.applySyntaxToTab(self)
+    ThemeManager.applySyntaxThemeToTab(self)
     
 
 func loadFromFile(path : String) -> int:

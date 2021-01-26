@@ -29,6 +29,7 @@ size = 20
 font_data = ExtResource( 4 )
 
 [node name="Main" type="Control" groups=[
+"Editor",
 "Main",
 ]]
 anchor_right = 1.0
