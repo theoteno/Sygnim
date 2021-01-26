@@ -8,14 +8,9 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Tabs",
-"class": "Tab",
-"language": "GDScript",
-"path": "res://Scripts/Tab.gd"
-} ]
+_global_script_classes=[  ]
 _global_script_class_icons={
-"Tab": ""
+
 }
 
 [application]
@@ -31,6 +26,10 @@ config/icon="res://Resources/Logo.png"
 Utility="*res://GlobalScripts/utility.gd"
 SignumSettings="*res://GlobalScripts/SignumSettings.gd"
 ThemeManager="*res://GlobalScripts/ThemeManager.gd"
+
+[debug]
+
+gdscript/warnings/return_value_discarded=false
 
 [display]
 

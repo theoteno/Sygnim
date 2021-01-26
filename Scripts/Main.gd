@@ -12,7 +12,7 @@ var max_recents = 10
 onready var save_as_file_dialog = get_node('SaveAsFileDialog')
 onready var open_file_dialog = get_node('OpenFileDialog')
 onready var about_popup = get_node('AboutPopup')
-onready var tab_container = get_node("HSplitContainer/Editor/TabContainer")
+onready var tab_container = get_node("HSplitContainer/Tabs/TabContainer")
 
 
 func _ready():
@@ -45,36 +45,6 @@ func updateWindowTitle():
 # Github Page = 1
 # Github Issues = 2
 
-func file_item_pressed(id):
-    match id:
-        0:
-            # Opens file select dialog
-            open_file_dialog.popup()
-        1:
-            # Opens save file dialog
-            save_as_file_dialog.popup()
-        2:
-            # Closes the program
-            get_tree().quit()
-        3:
-            # Creates file
-            newTab()
-        4:
-            # Saves file without changing the name
-            current_tab.saveFile()
-            #save_file()
-
-func help_item_pressed(id):
-    match id:
-        0:
-            # Opens about popup
-            about_popup.popup()
-        1:
-            # Opens the github page in the browser
-            OS.shell_open('https://github.com/MintStudios/Signum')
-        2:
-            # Opens issues in github
-            OS.shell_open('https://github.com/MintStudios/Signum/issues')
 
 
 func newTab(path : String = UNTITLED):
@@ -100,31 +70,6 @@ func _getAvailableUntitledFileName() -> String:
         count += 1
     return file_name
     
-
-# Signal for going to the recent file
-func go_to_recent(path):
-    # Do not open file if its already opened in editor.
-    # instead switch to that tab
-    if isFileOpen(path):
-        switchToTab(path)
-        return
-
-    # Creates and reads the file
-    var file = File.new()
-    file.open(path, 1)
-    # Makes the TextEdit text the same as the file's
-    current_tab.get_node("TextEdit").text = file.get_as_text()
-    # Closes to prevent memory leaks
-    file.close()
-    # Changes the title to the file path
-    current_file = path
-    updateWindowTitle()
-
-# Clears the recents list
-func clear_recents():
-    for rcnt in $HSplitContainer/Sidebar/Recents/Recents.get_children():
-        # Deletes itself
-        rcnt.queue_free()
 
 # Check if File is open in editor
 func isFileOpen(file_path : String) -> bool:
