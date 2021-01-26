@@ -40,13 +40,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="panel" type="Panel" parent="."]
+self_modulate = Color( 0.623529, 0.623529, 0.623529, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.0980392, 0.101961, 0.184314, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
 anchor_right = 1.0

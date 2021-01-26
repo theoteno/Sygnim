@@ -15,14 +15,7 @@ func _loadItems():
 
 # Function to apply theme
 func theme_select(id):
-    pass
-    # get_tree().root.get_child(1).theme = load(themes[id])
-    # if get_tree().root.get_child(1).theme == load(themes[2]):
-    #     get_node('/root/Main/ColorRect').color = Color('#ffffff')
-    # if get_tree().root.get_child(1).theme == load(themes[1]):
-    #     get_node('/root/Main/ColorRect').color = Color('#dcd2bb')
-    # if get_tree().root.get_child(1).theme == load(themes[0]):
-    #     get_node('/root/Main/ColorRect').color = Color('#191a2f')
+    ThemeManager.loadTheme(get_item_text(id))
     
 
 func _getThemeId(theme_name : String) -> int:

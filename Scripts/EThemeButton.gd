@@ -1,8 +1,8 @@
 extends OptionButton
 
 func _ready():
-    selected = _getThemeId(SignumSettings.settings.syntax_theme)
     _loadItems()
+    selected = _getThemeId(SignumSettings.settings.syntax_theme)
 
 func _loadItems():
     var themes = ThemeManager.syntax_themes.keys()

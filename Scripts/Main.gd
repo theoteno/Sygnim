@@ -61,7 +61,7 @@ func file_item_pressed(id):
             newTab()
         4:
             # Saves file without changing the name
-            pass
+            current_tab.saveFile()
             #save_file()
 
 func help_item_pressed(id):

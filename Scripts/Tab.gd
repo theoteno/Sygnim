@@ -59,6 +59,7 @@ func saveFile():
     var err = file.open(file_path, 2)
     if err == OK:
         file.store_string(text_edit_box.text)
+        print("File saved " + file_path)
     else: 
         print("Failed to save file " + file_path)
     file.close()

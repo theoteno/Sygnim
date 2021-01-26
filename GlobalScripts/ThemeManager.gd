@@ -21,7 +21,7 @@ const themes = {
 }
 
 const syntax_themes = {
-    "Default"       : "default",
+    "default"       : "default",
     "Atom Dark"     : "Atom-Dark.thm",
     "Monokai"       : "Monokai.thm"
 }
@@ -36,12 +36,16 @@ func loadTheme(theme_name : String):
     if not theme:
         print("Unknown theme " + theme_name)
         return
+    var editor = get_tree().get_nodes_in_group("Editor")[0]
+    editor.theme = load(themes_dir + theme)
     # Change in settings
     SignumSettings.settings.theme = theme_name
+
 
 func loadSyntaxTheme(theme_name : String):
     # Default theme i.e same as main theme
     if theme_name == "" || theme_name == "default":
+        SignumSettings.settings.syntax_theme = theme_name
         return
     
     var theme = syntax_themes.get(theme_name)
@@ -149,4 +153,3 @@ func _clearSyntaxTheme():
     syntax_theme.custom_colors.clear()
     syntax_theme.keyword_colors.clear()
     syntax_theme.color_regions.clear()
-
