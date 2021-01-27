@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Resources/LogoMini.png" type="Texture" id=1]
+[ext_resource path="res://Fonts/Montserrat-Regular.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scenes/Menu.gd" type="Script" id=3]
+
+[node name="Menu" type="HBoxContainer"]
+anchor_right = 1.0
+margin_left = 10.801
+margin_top = 1.0
+margin_right = -6.19904
+margin_bottom = 38.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Logo" type="TextureRect" parent="."]
+margin_right = 32.0
+margin_bottom = 37.0
+texture = ExtResource( 1 )
+stretch_mode = 4
+
+[node name="FileMenu" type="MenuButton" parent="."]
+margin_left = 36.0
+margin_right = 83.0
+margin_bottom = 37.0
+custom_fonts/font = ExtResource( 2 )
+text = "File"
+items = [ "Open File", null, 0, false, false, 0, 0, null, "", false, "Save As File", null, 0, false, false, 1, 0, null, "", false, "Save File", null, 0, false, false, 4, 0, null, "", false, "New File", null, 0, false, false, 3, 0, null, "", false, "Quit", null, 0, false, false, 2, 0, null, "", false ]
+switch_on_hover = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HelpMenu" type="MenuButton" parent="."]
+margin_left = 87.0
+margin_right = 146.0
+margin_bottom = 37.0
+custom_fonts/font = ExtResource( 2 )
+text = "Help"
+items = [ "About", null, 0, false, false, 0, 0, null, "", false, "Github", null, 0, false, false, 1, 0, null, "", false, "Report a Bug", null, 0, false, false, 2, 0, null, "", false ]
+switch_on_hover = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Edit" type="MenuButton" parent="."]
+margin_left = 150.0
+margin_right = 202.0
+margin_bottom = 37.0
+custom_fonts/font = ExtResource( 2 )
+text = "Edit"
+items = [ "Find", null, 0, false, false, 0, 0, null, "", false, "Replace", null, 0, false, false, 1, 0, null, "", false, "Preferences", null, 0, false, false, 2, 0, null, "", false ]
+switch_on_hover = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
