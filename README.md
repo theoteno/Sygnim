@@ -1,71 +1,16 @@
 <p align="center">
     <img src="https://raw.githubusercontent.com/MintStudios/Signum/master/Resources/Logo.png" height="100" width="100"/>
-    <h1 align = "center">Signum - the free and open-source text editor!</h1>
+    <h1 align = "center">One more prototype of interest.</h1>
 </p>
 <p align="center">
-    Made by Mint Studios with the Godot Engine, written in GDScript!
+    Just a prototype, but might lead to a hyper-typer moving text editor!?
 </p>
  <p align="center">  
-    <img src="https://i.postimg.cc/HL5kSNqh/Annotation-2020-06-07-181537.png" alt="Signum" />
+    <img src="https://i.postimg.cc/HL5kSNqh/Annotation-2020-06-07-181537.png" alt="Signum" height="240" width="400"/>
 </p>
-<p align="center">
-    <img src="https://github.com/MintStudios/Signum/workflows/godot-ci%20export/badge.svg" alt="Signum" />
+ <p align="center">
+    Preview about vimty: The inspiring vim plugin that I couldn't start using at all:
 </p>
-<p align="center">
-    <img src="https://img.shields.io/github/repo-size/MintStudios/signum"/>
-    <img src="https://img.shields.io/github/downloads/MintStudios/Signum/total?color=lightgreen"/>
-    <img src="https://img.shields.io/github/license/MintStudios/Signum?color=Red"/>
-    <img src="https://img.shields.io/github/issues/MintStudios/Signum"/>
+ <p align="center">
+    <img src="https://thumbs.gfycat.com/RegularWigglyAlaskanmalamute-size_restricted.gif" width="400" height="240" />
 </p>
-<p align="center">
-    <img src="https://img.shields.io/github/v/release/mintstudios/signum?include_prereleases"/>
-    <img src="https://img.shields.io/github/commits-since/mintstudios/signum/latest?include_prereleases"/>
-</p>
-<p align="center">
-    <img src="https://img.shields.io/github/forks/MintStudios/Signum?style=social"/>
-    <img src="https://img.shields.io/github/stars/MintStudios/Signum?style=social"/>
-    <img src="https://img.shields.io/github/watchers/mintstudios/Signum?style=social"/>
-</p>
-
-
-
-Signum is a free and open source text editor, that is made with the Godot Engine! It uses the permissive MIT license, so anyone can contribute!
-
-## Downloads
- - [GitHub Releases (Windows, Linux & Mac)](https://github.com/MintStudios/Signum/releases)
- - [Github Nightly Builds](https://github.com/MintStudios/Signum/actions?query=is%3Asuccess)
- 
- _More download links pending_
- 
- _Nightly builds are built everyday at **00:00 UTC**. To download these builds, clink on the nightly builds link_ 
- 
- ![Annotation-2020-06-07-174747-200x100.png](https://i.postimg.cc/CK6ztD5R/Annotation-2020-06-07-174747-200x100.png)
- 
- _and select the latest build._
- _Then, proceed to click on your operating system._
- 
- ![Annotation-2020-06-07-174942-200x100.png](https://i.postimg.cc/KY4Ynzfx/Annotation-2020-06-07-174942-200x100.png)
- 
- _The file will automatically start to download._
- 
- ## Contributing
- Please feel free to contribute! I am always looking for ways to improve the editor. Signum uses Godot version _**3.2.4 beta 3**_
- 
- 1. Download the Godot Engine [here](https://godotengine.org/download/)
- 2. Download the contents of the repository
- 3. Make your own additions! **_MAKE SURE THAT YOU USE THE GLES2 RENDERER_**
- 
- ## Documentation
- Documentation is currently being built in the `gh-pages` branch, and is using a jekyll theme for the moment. It is being hosted at http://mintstudios.me/Signum.
- 
- ## v0.2 Features
-- 2 brand new themes: Godot and Solarized
-- Settings tab
-- Option for drawing tabs
-- Option for drawing spaces
-- Option for using a caret or a block
-- Option for highlighting current line
-- Option to view up to 5 recent files
-- Option to clear your recents
- 
- **If this all seems to less for you, make sure to contribute!**
